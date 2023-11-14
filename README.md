@@ -38,7 +38,7 @@ Install dependencies
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[GPL-3.0 license](https://choosealicense.com/licenses/gpl-3.0/
 
 
 
