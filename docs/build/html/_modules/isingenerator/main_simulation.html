@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>isingenerator.main_simulation &#8212; ISINGenerator 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=258774b3" />
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for isingenerator.main_simulation</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module providing class for main simulation of 2D Ising Model&quot;&quot;&quot;</span>
+<span class="c1"># Copyright (C) 2023, Erick Jesús Ríos González</span>
+
+<span class="c1"># This program is free software; you can redistribute it and/or</span>
+<span class="c1"># modify it under the terms of the GNU General Public License</span>
+<span class="c1"># as published by the Free Software Foundation; either version 2</span>
+<span class="c1"># of the License, or (at your option) any later version.</span>
+
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program; if not, write to the Free Software</span>
+<span class="c1"># Foundation, Inc., 51 Franklin Street, Fifth Floor,</span>
+<span class="c1"># Boston, MA  02110-1301, USA.</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">isingenerator.monte_carlo_simulation</span> <span class="kn">import</span> <span class="n">MonteCarloSimulation</span>
+<span class="kn">from</span> <span class="nn">isingenerator.lattice_square</span> <span class="kn">import</span> <span class="n">LatticeSquare</span>
+<span class="kn">from</span> <span class="nn">isingenerator.ising_model_2d</span> <span class="kn">import</span> <span class="n">IsingModel2D</span>
+<span class="kn">from</span> <span class="nn">isingenerator.topological_variables</span> <span class="kn">import</span> <span class="n">TopologicalVariables</span>
+
+
+<div class="viewcode-block" id="MainSimulation">
+<a class="viewcode-back" href="../../isingenerator.html#isingenerator.main_simulation.MainSimulation">[docs]</a>
+<span class="k">class</span> <span class="nc">MainSimulation</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Static class for implementing the main simulation of 2D Ising Model&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MainSimulation.create_observables">
+<a class="viewcode-back" href="../../isingenerator.html#isingenerator.main_simulation.MainSimulation.create_observables">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">create_observables</span><span class="p">(</span>
+        <span class="n">steps</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">kT</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">dimension</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="n">percentage_ones</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span>
+        <span class="n">J</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">B</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">epsilon</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+        <span class="n">create_images</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Runs the simulation of the 2D Ising Model.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            kT (float): Boltzmann constant times.</span>
+<span class="sd">            steps (int): Number of iterations.</span>
+<span class="sd">            dimension (int, optional): Dimension of spin matrix. Defaults to 15.</span>
+<span class="sd">            percentange_ones (int,optional): Percentage of ones in the lattice. Should be a float between 0 and 1. Defaults to 0.8.</span>
+<span class="sd">            J (float, optional): Interaction constant between spins. Defaults to 1.</span>
+<span class="sd">            B (float, optional): External Magnetic Field. Defaults to 0.</span>
+<span class="sd">            mu (float, optional): Magnetic moment. Defaults to 1.</span>
+<span class="sd">            epsilon (int, optional): Amount designated to smooth the obtained quantities.. Defaults to 15.</span>
+<span class="sd">            create_images (bool, optional): Option to visualize the changes on spin matrix. Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: Final data for simulation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Here we create memory arrays to store the data of interest.</span>
+
+        <span class="n">mean_domain_size_array</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">domain_number_array</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">magnetization_array</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">energy_array</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">half</span> <span class="o">=</span> <span class="n">steps</span> <span class="o">/</span> <span class="mi">2</span>
+
+        <span class="c1"># Initialize the spin array</span>
+        <span class="n">lattice</span> <span class="o">=</span> <span class="n">LatticeSquare</span><span class="p">(</span><span class="n">dimension</span><span class="p">,</span> <span class="n">dimension</span><span class="p">,</span> <span class="n">percentage_ones</span><span class="p">)</span>
+        <span class="n">matrix</span> <span class="o">=</span> <span class="n">lattice</span><span class="o">.</span><span class="n">create_matrix</span><span class="p">()</span>
+        <span class="n">ising_model</span> <span class="o">=</span> <span class="n">IsingModel2D</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">steps</span><span class="p">):</span>
+            <span class="nb">setattr</span><span class="p">(</span>
+                <span class="n">ising_model</span><span class="p">,</span>
+                <span class="s2">&quot;_matrix&quot;</span><span class="p">,</span>
+                <span class="n">MonteCarloSimulation</span><span class="o">.</span><span class="n">markov_chain_move</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="n">dimension</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">kT</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">step</span> <span class="o">&gt;=</span> <span class="n">half</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">step</span> <span class="o">%</span> <span class="n">epsilon</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">magnetization_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ising_model</span><span class="o">.</span><span class="n">calculate_magnetization</span><span class="p">())</span>
+                    <span class="n">energy_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ising_model</span><span class="o">.</span><span class="n">calculate_energy</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">mu</span><span class="p">))</span>
+                    <span class="n">domain_number_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">TopologicalVariables</span><span class="o">.</span><span class="n">number_of_domains</span><span class="p">(</span>
+                            <span class="nb">getattr</span><span class="p">(</span><span class="n">ising_model</span><span class="p">,</span> <span class="s2">&quot;_matrix&quot;</span><span class="p">)</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+                    <span class="n">mean_domain_size_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">TopologicalVariables</span><span class="o">.</span><span class="n">mean_domain_size</span><span class="p">(</span>
+                            <span class="nb">getattr</span><span class="p">(</span><span class="n">ising_model</span><span class="p">,</span> <span class="s2">&quot;_matrix&quot;</span><span class="p">)</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">kT</span><span class="p">,</span>
+            <span class="n">B</span><span class="p">,</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">energy_array</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">magnetization_array</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">domain_number_array</span><span class="p">),</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">mean_domain_size_array</span><span class="p">),</span>
+        <span class="p">]</span></div>
+</div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">ISINGenerator</a></h1>
+
+
+
+<p class="blurb">Creation of DataBase for 2D Ising Model</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=erick-rios&repo=ISINGenerator&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Erick Jesús Ríos González.
+      
+    </div>
+
+    
+    <a href="https://github.com/erick-rios/ISINGenerator" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-109078714-2']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

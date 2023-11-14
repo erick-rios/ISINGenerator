@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>isingenerator.lattice_square &#8212; ISINGenerator 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=258774b3" />
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for isingenerator.lattice_square</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module providing a class to implement the Lattice Square representation of the 2D Ising Model.&quot;&quot;&quot;</span>
+<span class="c1"># Copyright (C) 2023, Erick Jesús Ríos González</span>
+
+<span class="c1"># This program is free software; you can redistribute it and/or</span>
+<span class="c1"># modify it under the terms of the GNU General Public License</span>
+<span class="c1"># as published by the Free Software Foundation; either version 2</span>
+<span class="c1"># of the License, or (at your option) any later version.</span>
+
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program; if not, write to the Free Software</span>
+<span class="c1"># Foundation, Inc., 51 Franklin Street, Fifth Floor,</span>
+<span class="c1"># Boston, MA  02110-1301, USA.</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="LatticeSquare">
+<a class="viewcode-back" href="../../isingenerator.html#isingenerator.lattice_square.LatticeSquare">[docs]</a>
+<span class="k">class</span> <span class="nc">LatticeSquare</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This class represents a 2D lattice, where each element is initialized randomly with ones and zeros based on the specified percentage of ones.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">rows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="n">columns</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="n">percentange_ones</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize an instance of the LatticeSquare class.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            rows (int, optional): Number of rows in the lattice. Defaults to 15.</span>
+<span class="sd">            columns (int, optional): Number of columns in the lattice. Defaults to 15.</span>
+<span class="sd">            percentage_ones (float, optional): Percentage of ones in the lattice. Should be a float between 0 and 1. Defaults to 0.8.</span>
+
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; lattice = LatticeSquare()</span>
+<span class="sd">            &gt;&gt;&gt; lattice_with_custom_params = LatticeSquare(rows=10, columns=20, percentage_ones=0.5)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span> <span class="o">=</span> <span class="n">rows</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_columns</span> <span class="o">=</span> <span class="n">columns</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_percentage_ones</span> <span class="o">=</span> <span class="n">percentange_ones</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_matrix</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a string representation of the LatticeSquare object.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: A string containing information about the rows, columns, and percentage of ones.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; lattice = LatticeSquare()</span>
+<span class="sd">            &gt;&gt;&gt; repr(lattice)</span>
+<span class="sd">            &#39;&lt;LatticeSquare[_rows=15, _columns=15, percentage_ones=0.8]&gt;&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;LatticeSquare[_rows=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_rows</span><span class="si">}</span><span class="s2">, columns=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_columns</span><span class="si">}</span><span class="s2">, percentage_ones=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_percentage_ones</span><span class="si">}</span><span class="s2">]&gt;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a formatted string representation of the LatticeSquare object.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: A formatted string containing information about the rows, columns, and percentage of ones.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; lattice = LatticeSquare()</span>
+<span class="sd">            &gt;&gt;&gt; str(lattice)</span>
+<span class="sd">            &#39;LatticeSquare\n_rows=15\ncolumns=15\npercentage_ones=0.8&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;LatticeSquare</span><span class="se">\n</span><span class="s2">rows=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_rows</span><span class="si">}</span><span class="se">\n</span><span class="s2">columns=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_columns</span><span class="si">}</span><span class="se">\n</span><span class="s2">percentage_ones=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_percentage_ones</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<div class="viewcode-block" id="LatticeSquare.create_matrix">
+<a class="viewcode-back" href="../../isingenerator.html#isingenerator.lattice_square.LatticeSquare.create_matrix">[docs]</a>
+    <span class="k">def</span> <span class="nf">create_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create the spin matrix for the 2D Ising model with a given distribution of positive spins.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            rows (int): Number of rows of spin matrix.</span>
+<span class="sd">            columns (int): Number of columns of spin matrix.</span>
+<span class="sd">            percentage_ones (float, optional): Percentage of positive spin values present in the spin matrix. Defaults to 0.8.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.array: Final spin matrix created.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">total_elements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_columns</span>
+
+        <span class="c1"># Calculates the quantity of ones and minus ones based on the given percentage.</span>
+        <span class="n">num_ones</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_percentage_ones</span> <span class="o">*</span> <span class="n">total_elements</span><span class="p">)</span>
+        <span class="n">num_minus_ones</span> <span class="o">=</span> <span class="n">total_elements</span> <span class="o">-</span> <span class="n">num_ones</span>
+
+        <span class="c1"># Creates a list of ones and minus ones based on the calculated quantities.</span>
+        <span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">num_ones</span> <span class="o">+</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">num_minus_ones</span>
+
+        <span class="c1"># Randomly shuffles the list of elements.</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
+
+        <span class="c1"># Creates the matrix from the shuffled list.</span>
+        <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rows</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_columns</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_matrix</span> <span class="o">=</span> <span class="n">matrix</span>
+
+        <span class="k">return</span> <span class="n">matrix</span></div>
+
+
+<div class="viewcode-block" id="LatticeSquare.random_position">
+<a class="viewcode-back" href="../../isingenerator.html#isingenerator.lattice_square.LatticeSquare.random_position">[docs]</a>
+    <span class="k">def</span> <span class="nf">random_position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Choose a random position from spin matrix.</span>
+
+
+<span class="sd">        Args:</span>
+<span class="sd">            matrix (np.array): Spin matrix.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: Row and column of the spin matrix randomly chosen.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_columns</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span></div>
+
+
+    <span class="c1"># properties</span>
+
+    <span class="k">def</span> <span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve the value of the specified attribute.</span>
+
+<span class="sd">        This method is automatically called when attempting to access an attribute of an object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            _name (str): The name of the attribute to retrieve.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Any: The value of the specified attribute.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            AttributeError: If the attribute is not found.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; obj = LatticeSquare(3, 4, 0.9)</span>
+<span class="sd">            &gt;&gt;&gt; obj.attribute_name  # This triggers __getattribute__</span>
+<span class="sd">            &#39;attribute_value&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_name</span><span class="p">)</span>
+
+    <span class="c1"># setters</span>
+
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the value of the specified attribute.</span>
+
+<span class="sd">        This method is automatically called when attempting to set the value of an attribute of an object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            _name (str): The name of the attribute to set.</span>
+<span class="sd">            value (Any): The value to assign to the attribute.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            AttributeError: If the attribute is read-only or cannot be set.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; obj = LatticeSquare(3, 4, 0.8)</span>
+<span class="sd">            &gt;&gt;&gt; obj.attribute_name = &#39;new_value&#39;  # This triggers __setattr__</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">ISINGenerator</a></h1>
+
+
+
+<p class="blurb">Creation of DataBase for 2D Ising Model</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=erick-rios&repo=ISINGenerator&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Erick Jesús Ríos González.
+      
+    </div>
+
+    
+    <a href="https://github.com/erick-rios/ISINGenerator" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-109078714-2']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>
