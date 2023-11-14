@@ -48,7 +48,7 @@ Install dependencies
 ## Usage/Examples
 
 ```py
-from create_data_simulation import CreateDataSimulation 
+from ising.generator.create_data_simulation import CreateDataSimulation 
 
 
 create_data_simulation = CreateDataSimulation(
