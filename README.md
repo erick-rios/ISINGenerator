@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/images/ISINGenerator(3).png" alt="Descripción de la imagen" width="150">
+  <img src="/images/ISINGenerator(3).png" alt="Descripción de la imagen" width="250">
 </p>
 
 
