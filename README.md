@@ -26,7 +26,7 @@ Instal by PyPI
 
 ## Documentation
 
-[https://linktodocumentation](http://isingenerator.readthedocs.io/)
+[http://isingenerator.readthedocs.io/](http://isingenerator.readthedocs.io/)
 
 
 ## License
