@@ -1,3 +1,4 @@
+"""Module providing a static class for implementing the Markov Chain Algorithm."""
 # Copyright (C) 2023, Erick Jesús Ríos González
 
 # This program is free software; you can redistribute it and/or
@@ -49,7 +50,6 @@ class MonteCarloSimulation:
         elif np.random.random() < np.exp(-delta_e * beta):
             site *= -1
         getattr(lattice, "_matrix")[a, b] = site
-
         return getattr(lattice, "_matrix")
 
     @staticmethod

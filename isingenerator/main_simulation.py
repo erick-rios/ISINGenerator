@@ -1,3 +1,4 @@
+"""Module providing class for main simulation of 2D Ising Model"""
 # Copyright (C) 2023, Erick Jesús Ríos González
 
 # This program is free software; you can redistribute it and/or

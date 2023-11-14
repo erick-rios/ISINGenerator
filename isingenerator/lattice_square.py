@@ -1,3 +1,4 @@
+"""Module providing a class to implement the Lattice Square representation of the 2D Ising Model."""
 # Copyright (C) 2023, Erick Jesús Ríos González
 
 # This program is free software; you can redistribute it and/or
@@ -68,7 +69,7 @@ class LatticeSquare:
             >>> str(lattice)
             'LatticeSquare\n_rows=15\ncolumns=15\npercentage_ones=0.8'
         """
-        return f"LatticeSquare\n_rows={self._rows}\ncolumns={self._columns}\npercentage_ones={self._percentage_ones}"
+        return f"LatticeSquare\nrows={self._rows}\ncolumns={self._columns}\npercentage_ones={self._percentage_ones}"
 
     def create_matrix(self) -> np.array:
         """Create the spin matrix for the 2D Ising model with a given distribution of positive spins.

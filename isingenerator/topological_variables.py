@@ -1,3 +1,4 @@
+"""Module a class for compute the Topological Values of the 2D Ising Model"""
 # Copyright (C) 2023, Erick Jesús Ríos González
 
 # This program is free software; you can redistribute it and/or

@@ -1,3 +1,4 @@
+"""Module providing a class to generate a CSV file"""
 # Copyright (C) 2023, Erick Jesús Ríos González
 
 # This program is free software; you can redistribute it and/or

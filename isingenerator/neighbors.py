@@ -1,3 +1,4 @@
+"""Module providing a class to manipulate quantities related to a matrix and an element of it."""
 # Copyright (C) 2023, Erick Jesús Ríos González
 
 # This program is free software; you can redistribute it and/or
