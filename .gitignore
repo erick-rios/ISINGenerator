@@ -1,0 +1,30 @@
+# .gitignore for Python projects
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local configuration file (for example, a IDE project file)
+.vscode/
+.idea/
+
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Compiled Python files
+*.pyc
+*.pyo
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+__MACOSX/
+
+# Data directory
+data/
