@@ -53,7 +53,7 @@ Install dependencies
 ## Usage/Examples
 
 ```py
-import CreateDataSimulation from create_data_simulation
+from create_data_simulation import CreateDataSimulation 
 
 
 create_data_simulation = CreateDataSimulation(
