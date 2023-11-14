@@ -14,16 +14,8 @@ Clone the project
   git clone https://github.com/erick-rios/ISINGenerator
 ```
 
-Go to the project directory
-
 ```bash
-  cd my-project
-```
-
-Install dependencies
-
-```bash
-  npm install
+  $ python3 -m pip install ISINGenerator
 ```
 ## Acknowledgements
 
@@ -33,7 +25,7 @@ Install dependencies
 
 ## Documentation
 
-[Documentation](https://linktodocumentation)
+[Documentation]([https://linktodocumentation](http://isingenerator.readthedocs.io/))
 
 
 ## License
@@ -56,12 +48,13 @@ from isingenerator.create_data_simulation import CreateDataSimulation
 
 
 create_data_simulation = CreateDataSimulation(
-        "/home/../../../data_simulation.csv",
-        20,
-        1,
-        2.0,
-        0.1,
-        3
+        "/home/../../../data_simulation.csv", # Name of the file
+        20,                                   # Steps
+        1,                                    # initial_step_kT
+        2.0,                                  # final_step_kT
+        0.1,                                  # delta_kT
+        3                                     # dimension
+        0.56                                  # percentage_ones
     )
 
 print(create_data_simulation.generate_csv_data_zero_magnetic_field())
