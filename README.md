@@ -1,5 +1,7 @@
-![](/images/ISINGenerator(3).png)
-# ISINGenerator
+<p align="center">
+  <img src="/images/ISINGenerator(3).png" alt="Descripción de la imagen" width="300">
+</p>
+
 
 A library for creating a database that allows analyzing the energy, magnetization, the number of topological domains and the mean size of the topological domains in a square lattice of spins in a Ising Model of two dimensions. It is achieved using Monte Carlo simulation and implementing the Metropolis algorithm.
 
