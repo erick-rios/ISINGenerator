@@ -30,6 +30,7 @@ class MainSimulation:
         steps: int,
         kT: float,
         dimension: int = 15,
+        percentage_ones: int = 0.8,
         J: float = 1,
         B: float = 0,
         mu: float = 1,
@@ -42,6 +43,7 @@ class MainSimulation:
             kT (float): Boltzmann constant times.
             steps (int): Number of iterations.
             dimension (int, optional): Dimension of spin matrix. Defaults to 15.
+            percentange_ones (int,optional): Percentage of ones in the lattice. Should be a float between 0 and 1. Defaults to 0.8.
             J (float, optional): Interaction constant between spins. Defaults to 1.
             B (float, optional): External Magnetic Field. Defaults to 0.
             mu (float, optional): Magnetic moment. Defaults to 1.
@@ -62,7 +64,7 @@ class MainSimulation:
         half = steps / 2
 
         # Initialize the spin array
-        lattice = LatticeSquare(dimension, dimension)
+        lattice = LatticeSquare(dimension, dimension, percentage_ones)
         matrix = lattice.create_matrix()
         ising_model = IsingModel2D(matrix)
 

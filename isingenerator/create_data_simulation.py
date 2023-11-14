@@ -32,6 +32,7 @@ class CreateDataSimulation:
         final_step_kT: float,
         delta_kT: float,
         dimension: int,
+        percentage_ones: float = 0.8,
         J: float = 1.0,
         mu: float = 1.0,
         epsilon: int = 15,
@@ -48,6 +49,7 @@ class CreateDataSimulation:
             final_step_kT (float): The final temperature.
             delta_kT (float): The temperature step.
             dimension (int): The dimension of the Ising Model 2D.
+            percentage_ones (float): 
             J (float, optional): The constant of interaction between spins. Defaults to 1.0.
             mu (float, optional): The constant of magnetic moment. Defaults to 1.0.
             epsilon (int, optional): An optional parameter with a default value of 15.
@@ -67,6 +69,7 @@ class CreateDataSimulation:
             ...     final_step_kT=2.0,
             ...     delta_kT=0.1,
             ...     dimension=20,
+            ...     percentage_ones=0.4,
             ...     J=1.5,
             ...     mu=2.0,
             ...     initial_step_B=0.2,
@@ -81,6 +84,7 @@ class CreateDataSimulation:
         self._delta_kT = delta_kT
         self._delta_B = delta_B
         self._dimension = dimension
+        self._percentage_ones = percentage_ones
         self._J = J
         self._mu = mu
         self._epsilon = epsilon
@@ -111,16 +115,17 @@ class CreateDataSimulation:
         return (
             "<Create Data Simulation["
             + f"_file_name = {self._file_name}, "
-            + f"steps = {self.steps}, "
-            + f"initial_step_kT = {self.initial_step_kT}, "
-            + f"initial_step_kT = {self.final_step_kT}, "
-            + f"delta_temperature = {self.delta_kT}\n"
-            + f"initial_step_B = {self.initial_step_B}, "
-            + f"initial_step_B = {self.final_step_B}, "
-            + f"delta_B = {self.delta_B}, "
-            + f"B = {self.B}, "
-            + f"dimension = {self.dimension}"
-            f"J = {self.J}, " + f"mu = {self.mu}]>"
+            + f"steps = {self._steps}, "
+            + f"initial_step_kT = {self._initial_step_kT}, "
+            + f"initial_step_kT = {self._final_step_kT}, "
+            + f"delta_temperature = {self._delta_kT}\n"
+            + f"initial_step_B = {self._initial_step_B}, "
+            + f"initial_step_B = {self._final_step_B}, "
+            + f"delta_B = {self._delta_B}, "
+            + f"B = {self._B}, "
+            + f"dimension = {self._dimension}, "
+            + f"percentage_ones = {self._percentage_ones}, "
+            + f"J = {self._J}, " + f"mu = {self._mu}]>"
         )
 
     def __str__(self) -> str:
@@ -151,31 +156,33 @@ class CreateDataSimulation:
             shape_Ising_Model_2D = (15, 15)
             }"
         """
-        if self.initial_step_B is None and self.final_step_B is None:
+        if self._initial_step_B is None and self._final_step_B is None:
             return (
                 "{Create Data Simulation\n"
                 + f"file_name = {self._file_name}\n"
-                + f"number_of_steps = {self.steps}\n"
-                + f"interval_temperatures = [{self.initial_step_kT},{self.final_step_kT}]\n"
-                + f"delta_temperature = {self.delta_kT}\n"
-                + f"value_magnetic_field = {self.B}\n"
-                + f"constant_of_interaction_between_spins = {self.J}"
-                + f"constant_of_magnetic_moment = {self.mu}"
-                + f"shape_Ising_Model_2D = ({self.dimension,self.dimension})"
+                + f"number_of_steps = {self._steps}\n"
+                + f"interval_temperatures = [{self._initial_step_kT},{self._final_step_kT}]\n"
+                + f"delta_temperature = {self._delta_kT}\n"
+                + f"value_magnetic_field = {self._B}\n"
+                + f"constant_of_interaction_between_spins = {self._J}\n"
+                + f"constant_of_magnetic_moment = {self._mu}\n"
+                + f"shape_Ising_Model_2D = ({self._dimension,self._dimension})\n"
+                + f"dimension = {self._dimension}"
                 + "}"
             )
         else:
             return (
-                "{<Create Data Simulation>\n"
+                "{Create Data Simulation\n"
                 + f"_file_name={self._file_name}\n"
-                + f"number_of_steps = {self.steps}\n"
-                + f"interval_temperatures = [{self.initial_step_kT},{self.final_step_kT}]\n"
-                + f"delta_temperature = {self.delta_kT}\n"
-                + f"intervalo_magnetic_field = [{self.initial_step_B},{self.final_step_B}]\n"
-                + f"delta_magnetic_field = {self.delta_B}"
-                + f"constant_of_interaction_between_spins = {self.J}"
-                + f"constant_of_magnetic_moment = {self.mu}"
-                + f"shape_Ising_Model_2D = ({self.dimension,self.dimension})"
+                + f"number_of_steps = {self._steps}\n"
+                + f"interval_temperatures = [{self._initial_step_kT},{self._final_step_kT}]\n"
+                + f"delta_temperature = {self._delta_kT}\n"
+                + f"intervalo_magnetic_field = [{self._initial_step_B},{self._final_step_B}]\n"
+                + f"delta_magnetic_field = {self._delta_B}\n"
+                + f"constant_of_interaction_between_spins = {self._J}\n"
+                + f"constant_of_magnetic_moment = {self._mu}\n"
+                + f"shape_Ising_Model_2D = ({self._dimension,self._dimension})\n"
+                + f"dimension = {self._dimension}"
                 + "}"
             )
 
@@ -200,6 +207,7 @@ class CreateDataSimulation:
                         self.steps,
                         kT,
                         self._dimension,
+                        self._percentage_ones,
                         self._J,
                         B,
                         self._mu,
@@ -231,6 +239,7 @@ class CreateDataSimulation:
                     self._steps,
                     kT,
                     self._dimension,
+                    self._percentage_ones,
                     self._J,
                     self._B,
                     self._mu,

@@ -31,8 +31,7 @@ class LatticeSquare:
         Args:
             rows (int, optional): Number of rows in the lattice. Defaults to 15.
             columns (int, optional): Number of columns in the lattice. Defaults to 15.
-            percentage_ones (float, optional): Percentage of ones in the lattice. Should be a float between 0 and 1.
-                Defaults to 0.8.
+            percentage_ones (float, optional): Percentage of ones in the lattice. Should be a float between 0 and 1. Defaults to 0.8.
 
 
         Example:
