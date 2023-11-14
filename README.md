@@ -42,7 +42,11 @@ Install dependencies
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](<p align="center">
+  <img src="/images/isingit.png" width="400" />
+  <img src="/images/Screenshot 2023-06-19 at 14-06-59 PrTr_UAM_IZT.png" width="400" /> 
+</p>
+)
 
 
 ## Usage/Examples
