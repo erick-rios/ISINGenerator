@@ -13,6 +13,7 @@ Clone the project
 ```bash
   git clone https://github.com/erick-rios/ISINGenerator
 ```
+Instal by PyPI
 
 ```bash
   $ python3 -m pip install ISINGenerator
