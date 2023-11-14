@@ -66,8 +66,7 @@ create_data_simulation = CreateDataSimulation(
     )
 
 print(create_data_simulation.generate_csv_data_zero_magnetic_field())
-
+```
 ## Support
 
 For support, email erickjesusriosgonzalez@gmail.com or join our Slack channel.
-```
