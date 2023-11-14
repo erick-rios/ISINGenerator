@@ -82,7 +82,6 @@ class CreateDataSimulation:
         self._initial_step_kT = initial_step_kT
         self._final_step_kT = final_step_kT
         self._delta_kT = delta_kT
-        self._delta_B = delta_B
         self._dimension = dimension
         self._percentage_ones = percentage_ones
         self._J = J
@@ -196,7 +195,7 @@ class CreateDataSimulation:
         data: list[float] = []
 
         # Perform nested loops
-        for kT in np.arange(
+        for k_T in np.arange(
             self._initial_step_kT, self._final_step_kT + self._delta_kT, self._delta_kT
         ):
             for B in np.arange(
@@ -204,8 +203,8 @@ class CreateDataSimulation:
             ):
                 data.append(
                     MainSimulation.create_observables(
-                        self.steps,
-                        kT,
+                        self._steps,
+                        k_T,
                         self._dimension,
                         self._percentage_ones,
                         self._J,
@@ -231,13 +230,13 @@ class CreateDataSimulation:
         data: list[float] = []
 
         # Perform the nested loop
-        for kT in np.arange(
+        for k_T in np.arange(
             self._initial_step_kT, self._final_step_kT + self._delta_kT, self._delta_kT
         ):
             data.append(
                 MainSimulation.create_observables(
                     self._steps,
-                    kT,
+                    k_T,
                     self._dimension,
                     self._percentage_ones,
                     self._J,
