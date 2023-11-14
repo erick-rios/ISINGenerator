@@ -1,8 +1,4 @@
-import sys
-sys.path.append('/home/soundskydriver/Documents/ISINGMODEL2DGenerator/src')
-
-
-from IsingModel2D import IsingModel2D
+from isingenerator.ising_model_2d import IsingModel2D
 import numpy as np
 
 matriz = np.array([[1,1,1,1],[-1,1,1,-1],[1,1,-1,1],[1,1,1,1]])

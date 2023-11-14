@@ -16,10 +16,10 @@
 # Boston, MA  02110-1301, USA.
 
 import numpy as np
-from src.MonteCarloSimulation import *
-from src.LatticeSquare import *
-from src.IsingModel2D import *
-from src.TopologicalVariables import *
+from isingenerator.monte_carlo_simulation import MonteCarloSimulation
+from isingenerator.lattice_square import LatticeSquare
+from isingenerator.ising_model_2d import IsingModel2D
+from isingenerator.topological_variables import TopologicalVariables
 
 
 class MainSimulation:

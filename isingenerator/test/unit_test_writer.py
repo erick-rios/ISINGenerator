@@ -1,7 +1,4 @@
-import sys
-sys.path.append('/home/soundskydriver/Documents/ISINGMODEL2DGenerator/src')
-
-from CreateDataSimulation import *
+from isingenerator.create_data_simulation import CreateDataSimulation
 
 create_data_simulation = CreateDataSimulation(
         "/home/soundskydriver/Documents/ISINGMODEL2DGenerator/docs/hazte_porfavor.csv",

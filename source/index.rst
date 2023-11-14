@@ -3,8 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to ISINGenerator's documentation!
+ISINGenerator
 =========================================
+
+**ISINGenerator** is a library for creating a database to analyze the energy, magnetization, the number of topological domains and the mean size of topological domains in a square lattice of spins in a Ising Model of two dimensions
+
 
 .. toctree::
    :maxdepth: 2

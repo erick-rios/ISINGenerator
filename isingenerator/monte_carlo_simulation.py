@@ -15,8 +15,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA  02110-1301, USA.
 
-from src.LatticeSquare import *
-from src.Neighbors import *
+from isingenerator.lattice_square import LatticeSquare
+from isingenerator.neighbors import Neighbors
 import numpy as np
 
 

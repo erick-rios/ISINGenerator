@@ -10,19 +10,20 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+sys.path.insert(0, os.path.abspath('..'))
 
+from isingenerator import __about__
 
 # -- Project information -----------------------------------------------------
 
-project = 'ISINGenerator'
-copyright = '2023, ERICK JESUS RIOS GONZALEZ'
-author = 'ERICK JESUS RIOS GONZALEZ'
+project = __about__.__title__
+copyright = __about__.__copyright__
+author = __about__.__author__
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.0'
+release = __about__.__version__
 
 
 # -- General configuration ---------------------------------------------------
@@ -31,26 +32,14 @@ release = '0.1.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    # ...
+    'recommonmark',
     'sphinx.ext.autodoc',
-    # ...
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.doctest',
+    'sphinx.ext.autosectionlabel',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.todo',
 ]
-
-autodoc_modules = {
-    'CreateDataSet': 'src/CreateDataSimulation.py',
-    "IsingModel2D": 'src/IsingModel2D.py',
-    'LatticeSquare': 'src/LatticeSquare.py',
-    'MainSimulation': 'src/MainSimulation.py',
-    'MonteCarloSimulation':'src/MonteCarloSimulation.py',
-    'Neighbors': 'src/Neighbors.py',
-    'TopologicalVariables': 'src/TopologicalVariables.py',
-    'WriterCSV': 'src/WriterCSV.py'
-}
-
-
-autodoc_classes = {
-    'mimodulo.MiClase': 'path/to/mimodulo.py:MiClase',  # Reemplaza 'path/to/mimodulo.py' con la ruta real
-}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -58,8 +47,28 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
+autoclass_content = 'both'
+autodoc_member_order = 'groupwise'
+
+todo_include_todos = True
+
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+    '.txt': 'markdown'
+}
+
+
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3', None),
+    'hypothesis': ('https://hypothesis.readthedocs.io/en/latest', None)
+    # 'pathlib': ('https://docs.python.org/3/library/pathlib.html', None)
+}
+
+# Make sure the target is unique
+autosectionlabel_prefix_document = True
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -67,6 +76,29 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = 'alabaster'
+
+# Theme options are theme-specific and customize the look and feel of a theme
+# further.  For a list of options available for each theme, see the
+# documentation.
+html_theme_options = {
+    'show_powered_by': False,
+    'github_user': 'erick-rios',
+    'github_repo': 'ISINGenerator',
+    'github_banner': True,
+    'show_related': False,
+    'note_bg': '#FFF59C',
+    'github_button': True,
+    'github_type': 'star',
+    'description': __about__.__summary__,
+    #'extra_nav_links': {''},
+    'analytics_id': 'UA-109078714-2',
+}
+
+# html_sidebars = {
+#     "**": [
+#         "about.html", "navigation.html", "localtoc.html", "relations.html", "sourcelink.html", "searchbox.html"
+#     ],
+# }
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

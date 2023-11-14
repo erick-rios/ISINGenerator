@@ -20,7 +20,7 @@ ISING MODEL 2D SQUARE LATTICE
 # Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA  02110-1301, USA.
 
-from src.Neighbors import *
+from isingenerator.neighbors import Neighbors
 from typing import Any
 import numpy as np
 
