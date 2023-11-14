@@ -1,2 +1,4 @@
 numpy>=1.16.5,<1.23.0
 scipy
+sphinx==7.2.6
+alabaster==0.7.13
