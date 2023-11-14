@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>isingenerator package &#8212; ISINGenerator 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=258774b3" />
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="isingenerator-package">
+<h1>isingenerator package<a class="headerlink" href="#isingenerator-package" title="Link to this heading">¶</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="isingenerator.test.html">isingenerator.test package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="isingenerator.test.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="isingenerator.test.html#module-isingenerator.test.unit_test">isingenerator.test.unit_test module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="isingenerator.test.html#module-isingenerator.test.unit_test_ising_model">isingenerator.test.unit_test_ising_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="isingenerator.test.html#module-isingenerator.test.unit_test_lattice">isingenerator.test.unit_test_lattice module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="isingenerator.test.html#module-isingenerator.test.unit_test_observables">isingenerator.test.unit_test_observables module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="isingenerator.test.html#module-isingenerator.test.unit_test_topological">isingenerator.test.unit_test_topological module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="isingenerator.test.html#module-isingenerator.test.unit_test_writer">isingenerator.test.unit_test_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="isingenerator.test.html#module-isingenerator.test">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-isingenerator.create_data_simulation">
+<span id="isingenerator-create-data-simulation-module"></span><h2>isingenerator.create_data_simulation module<a class="headerlink" href="#module-isingenerator.create_data_simulation" title="Link to this heading">¶</a></h2>
+<p>Module providing a class for create the data simulation of the 2D Ising Model</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="isingenerator.create_data_simulation.CreateDataSimulation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">isingenerator.create_data_simulation.</span></span><span class="sig-name descname"><span class="pre">CreateDataSimulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_step_kT</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_step_kT</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_kT</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentage_ones</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">J</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_step_B</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">final_step_B</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_B</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/isingenerator/create_data_simulation.html#CreateDataSimulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.create_data_simulation.CreateDataSimulation" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class for creating the dataset from an Ising Model 2D using Monte Carlo and Markov Chains.</p>
+<p>Initialize an instance of CreateDataSimulation.</p>
+<dl>
+<dt>Args:</dt><dd><p>file_name (str): The name of the file.
+steps (int): The number of steps.
+initial_step_kT (float): The initial temperature.
+final_step_kT (float): The final temperature.
+delta_kT (float): The temperature step.
+dimension (int): The dimension of the Ising Model 2D.
+percentage_ones (float): 
+J (float, optional): The constant of interaction between spins. Defaults to 1.0.
+mu (float, optional): The constant of magnetic moment. Defaults to 1.0.
+epsilon (int, optional): An optional parameter with a default value of 15.
+initial_step_B (float, optional): The initial magnetic field. Defaults to None.
+final_step_B (float, optional): The final magnetic field. Defaults to None.
+delta_B (float, optional): The magnetic field step. Defaults to None.</p>
+</dd>
+<dt>Note:</dt><dd><p>If initial_step_B, final_step_B, and delta_B are provided, the magnetic field parameters
+will be used; otherwise, the default magnetic field value will be set to 0.</p>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">simulation</span> <span class="o">=</span> <span class="n">CreateDataSimulation</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;example.csv&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">initial_step_kT</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">final_step_kT</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">delta_kT</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">dimension</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">percentage_ones</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">J</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">mu</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">initial_step_B</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">final_step_B</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">delta_B</span><span class="o">=</span><span class="mf">0.2</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.create_data_simulation.CreateDataSimulation.generate_csv_data_nonzero_magnetic_field">
+<span class="sig-name descname"><span class="pre">generate_csv_data_nonzero_magnetic_field</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/isingenerator/create_data_simulation.html#CreateDataSimulation.generate_csv_data_nonzero_magnetic_field"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.create_data_simulation.CreateDataSimulation.generate_csv_data_nonzero_magnetic_field" title="Link to this definition">¶</a></dt>
+<dd><p>Generates a csv archive with the data of the simulation. This is for a non-zero external magnetic field.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>str: The name of the file created.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.create_data_simulation.CreateDataSimulation.generate_csv_data_zero_magnetic_field">
+<span class="sig-name descname"><span class="pre">generate_csv_data_zero_magnetic_field</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/isingenerator/create_data_simulation.html#CreateDataSimulation.generate_csv_data_zero_magnetic_field"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.create_data_simulation.CreateDataSimulation.generate_csv_data_zero_magnetic_field" title="Link to this definition">¶</a></dt>
+<dd><p>Generates a csv archive with the data of the simulation. This is for a zero external magnetic field.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>str: The name of the file created.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-isingenerator.ising_model_2d">
+<span id="isingenerator-ising-model-2d-module"></span><h2>isingenerator.ising_model_2d module<a class="headerlink" href="#module-isingenerator.ising_model_2d" title="Link to this heading">¶</a></h2>
+<p>ISING MODEL 2D SQUARE LATTICE</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="isingenerator.ising_model_2d.IsingModel2D">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">isingenerator.ising_model_2d.</span></span><span class="sig-name descname"><span class="pre">IsingModel2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/isingenerator/ising_model_2d.html#IsingModel2D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.ising_model_2d.IsingModel2D" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class for calculating pnysical variables in a spin matrix.</p>
+<p>Initialize an instance of the IsingModel2D class.</p>
+<p>This class represents a 2D Ising model with a given spin matrix.</p>
+<dl>
+<dt>Args:</dt><dd><p>matrix (np.ndarray): The spin matrix representing the Ising model.</p>
+</dd>
+<dt>Attributes:</dt><dd><p>_matrix (np.ndarray): The spin matrix of the Ising model.
+_N (int): The dimension of the Ising model, inferred from the shape of the matrix.</p>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spin_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ising_model</span> <span class="o">=</span> <span class="n">IsingModel2D</span><span class="p">(</span><span class="n">spin_matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.ising_model_2d.IsingModel2D.calculate_energy">
+<span class="sig-name descname"><span class="pre">calculate_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">J</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/isingenerator/ising_model_2d.html#IsingModel2D.calculate_energy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.ising_model_2d.IsingModel2D.calculate_energy" title="Link to this definition">¶</a></dt>
+<dd><p>Function to calculate the energy of the 2D Ising model.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>J (float): Interaction constant between spins.
+B (float): External magnetic field.
+mu (float): Magnetic moment</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: Total energy of spin matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.ising_model_2d.IsingModel2D.calculate_magnetization">
+<span class="sig-name descname"><span class="pre">calculate_magnetization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/isingenerator/ising_model_2d.html#IsingModel2D.calculate_magnetization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.ising_model_2d.IsingModel2D.calculate_magnetization" title="Link to this definition">¶</a></dt>
+<dd><p>This method returns the magnetization of the spin matrix.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>matrix (np.ndarray): spin matrix</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: Total magnetization of spin matrix.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-isingenerator.lattice_square">
+<span id="isingenerator-lattice-square-module"></span><h2>isingenerator.lattice_square module<a class="headerlink" href="#module-isingenerator.lattice_square" title="Link to this heading">¶</a></h2>
+<p>Module providing a class to implement the Lattice Square representation of the 2D Ising Model.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="isingenerator.lattice_square.LatticeSquare">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">isingenerator.lattice_square.</span></span><span class="sig-name descname"><span class="pre">LatticeSquare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentange_ones</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/isingenerator/lattice_square.html#LatticeSquare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.lattice_square.LatticeSquare" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>This class represents a 2D lattice, where each element is initialized randomly with ones and zeros based on the specified percentage of ones.</p>
+<p>Initialize an instance of the LatticeSquare class.</p>
+<dl>
+<dt>Args:</dt><dd><p>rows (int, optional): Number of rows in the lattice. Defaults to 15.
+columns (int, optional): Number of columns in the lattice. Defaults to 15.
+percentage_ones (float, optional): Percentage of ones in the lattice. Should be a float between 0 and 1. Defaults to 0.8.</p>
+</dd>
+<dt>Example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lattice</span> <span class="o">=</span> <span class="n">LatticeSquare</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lattice_with_custom_params</span> <span class="o">=</span> <span class="n">LatticeSquare</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">percentage_ones</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.lattice_square.LatticeSquare.create_matrix">
+<span class="sig-name descname"><span class="pre">create_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">array</span></span></span><a class="reference internal" href="_modules/isingenerator/lattice_square.html#LatticeSquare.create_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.lattice_square.LatticeSquare.create_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Create the spin matrix for the 2D Ising model with a given distribution of positive spins.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>rows (int): Number of rows of spin matrix.
+columns (int): Number of columns of spin matrix.
+percentage_ones (float, optional): Percentage of positive spin values present in the spin matrix. Defaults to 0.8.</p>
+</dd>
+<dt>Returns:</dt><dd><p>np.array: Final spin matrix created.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.lattice_square.LatticeSquare.random_position">
+<span class="sig-name descname"><span class="pre">random_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a></span></span><a class="reference internal" href="_modules/isingenerator/lattice_square.html#LatticeSquare.random_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.lattice_square.LatticeSquare.random_position" title="Link to this definition">¶</a></dt>
+<dd><p>Choose a random position from spin matrix.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>matrix (np.array): Spin matrix.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: Row and column of the spin matrix randomly chosen.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-isingenerator.main_simulation">
+<span id="isingenerator-main-simulation-module"></span><h2>isingenerator.main_simulation module<a class="headerlink" href="#module-isingenerator.main_simulation" title="Link to this heading">¶</a></h2>
+<p>Module providing class for main simulation of 2D Ising Model</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="isingenerator.main_simulation.MainSimulation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">isingenerator.main_simulation.</span></span><span class="sig-name descname"><span class="pre">MainSimulation</span></span><a class="reference internal" href="_modules/isingenerator/main_simulation.html#MainSimulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.main_simulation.MainSimulation" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Static class for implementing the main simulation of 2D Ising Model</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.main_simulation.MainSimulation.create_observables">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_observables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dimension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentage_ones</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">J</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a></span></span><a class="reference internal" href="_modules/isingenerator/main_simulation.html#MainSimulation.create_observables"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.main_simulation.MainSimulation.create_observables" title="Link to this definition">¶</a></dt>
+<dd><p>Runs the simulation of the 2D Ising Model.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>kT (float): Boltzmann constant times.
+steps (int): Number of iterations.
+dimension (int, optional): Dimension of spin matrix. Defaults to 15.
+percentange_ones (int,optional): Percentage of ones in the lattice. Should be a float between 0 and 1. Defaults to 0.8.
+J (float, optional): Interaction constant between spins. Defaults to 1.
+B (float, optional): External Magnetic Field. Defaults to 0.
+mu (float, optional): Magnetic moment. Defaults to 1.
+epsilon (int, optional): Amount designated to smooth the obtained quantities.. Defaults to 15.
+create_images (bool, optional): Option to visualize the changes on spin matrix. Defaults to False.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: Final data for simulation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-isingenerator.monte_carlo_simulation">
+<span id="isingenerator-monte-carlo-simulation-module"></span><h2>isingenerator.monte_carlo_simulation module<a class="headerlink" href="#module-isingenerator.monte_carlo_simulation" title="Link to this heading">¶</a></h2>
+<p>Module providing a static class for implementing the Markov Chain Algorithm.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="isingenerator.monte_carlo_simulation.MonteCarloSimulation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">isingenerator.monte_carlo_simulation.</span></span><span class="sig-name descname"><span class="pre">MonteCarloSimulation</span></span><a class="reference internal" href="_modules/isingenerator/monte_carlo_simulation.html#MonteCarloSimulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.monte_carlo_simulation.MonteCarloSimulation" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class for implementing the Markov Chain Algorithm.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.monte_carlo_simulation.MonteCarloSimulation.delta_energy">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delta_energy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_of_site</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sum_nb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></span><a class="reference internal" href="_modules/isingenerator/monte_carlo_simulation.html#MonteCarloSimulation.delta_energy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.monte_carlo_simulation.MonteCarloSimulation.delta_energy" title="Link to this definition">¶</a></dt>
+<dd><p>Caltulate delta energy to implement the Markov Chain.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>value_of_site (int): Value of spin in spin matrix site chosen.
+sum_nb (int): Sum of nearest neighbors for a spin value on site.</p>
+</dd>
+<dt>Returns:</dt><dd><p>int: Delta energy.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.monte_carlo_simulation.MonteCarloSimulation.markov_chain_move">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">markov_chain_move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lattice</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#isingenerator.lattice_square.LatticeSquare" title="isingenerator.lattice_square.LatticeSquare"><span class="pre">LatticeSquare</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/isingenerator/monte_carlo_simulation.html#MonteCarloSimulation.markov_chain_move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.monte_carlo_simulation.MonteCarloSimulation.markov_chain_move" title="Link to this definition">¶</a></dt>
+<dd><p>Implement the Monte Carlo method using the Metropolis algorithm. The goal is to efficiently make the change until reaching the base state using Boltzmann probability as a condition.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>matrix (np.ndarray): Spin matrix
+N (int): Dimension of the spin matrix.
+beta (float): One divided Boltzmann constant times temperature.</p>
+</dd>
+<dt>Returns:</dt><dd><p>np.ndarray: The matrix after making spin changes, aiming to achieve the minimum energy.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-isingenerator.neighbors">
+<span id="isingenerator-neighbors-module"></span><h2>isingenerator.neighbors module<a class="headerlink" href="#module-isingenerator.neighbors" title="Link to this heading">¶</a></h2>
+<p>Module providing a class to manipulate quantities related to a matrix and an element of it.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="isingenerator.neighbors.Neighbors">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">isingenerator.neighbors.</span></span><span class="sig-name descname"><span class="pre">Neighbors</span></span><a class="reference internal" href="_modules/isingenerator/neighbors.html#Neighbors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.neighbors.Neighbors" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Static class to calculate quatities due to nearest neughbors</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.neighbors.Neighbors.sum_neighbors_position">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sum_neighbors_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></span><a class="reference internal" href="_modules/isingenerator/neighbors.html#Neighbors.sum_neighbors_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.neighbors.Neighbors.sum_neighbors_position" title="Link to this definition">¶</a></dt>
+<dd><p>Get the sum of the nearest neighbors due to a spin in a site on the Spin matrix.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>row (int): Row of position in matrix.
+column (int): Column of position in matrix
+N (int): Dimension of matrix.</p>
+</dd>
+<dt>Returns:</dt><dd><p>int: Sum of nearest neighbors for a spin in a position [a,b]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.neighbors.Neighbors.sum_of_neighbors">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sum_of_neighbors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></span><a class="reference internal" href="_modules/isingenerator/neighbors.html#Neighbors.sum_of_neighbors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.neighbors.Neighbors.sum_of_neighbors" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the sum of nearby neighbors in the spin matrix, considering periodic boundary conditions.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>int: The sum of nearby neighbors in the spin matrix.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-isingenerator.topological_variables">
+<span id="isingenerator-topological-variables-module"></span><h2>isingenerator.topological_variables module<a class="headerlink" href="#module-isingenerator.topological_variables" title="Link to this heading">¶</a></h2>
+<p>Module a class for compute the Topological Values of the 2D Ising Model</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="isingenerator.topological_variables.TopologicalVariables">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">isingenerator.topological_variables.</span></span><span class="sig-name descname"><span class="pre">TopologicalVariables</span></span><a class="reference internal" href="_modules/isingenerator/topological_variables.html#TopologicalVariables"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.topological_variables.TopologicalVariables" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class for calculating topological variables in a spin matrix.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.topological_variables.TopologicalVariables.find_domains">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">find_domains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/isingenerator/topological_variables.html#TopologicalVariables.find_domains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.topological_variables.TopologicalVariables.find_domains" title="Link to this definition">¶</a></dt>
+<dd><p>Label the holes in the spin matrix, considering boundary conditions.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>np.ndarray: The matrix with labels, taking into account boundary conditions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.topological_variables.TopologicalVariables.label_ring">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">label_ring</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a></span></span><a class="reference internal" href="_modules/isingenerator/topological_variables.html#TopologicalVariables.label_ring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.topological_variables.TopologicalVariables.label_ring" title="Link to this definition">¶</a></dt>
+<dd><p>Label the holes in the spin matrix, considering ring-like boundary conditions.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>list: A list containing the matrix with labels, the number of labels, and the maximum label.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.topological_variables.TopologicalVariables.length_of_domains">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">length_of_domains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/isingenerator/topological_variables.html#TopologicalVariables.length_of_domains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.topological_variables.TopologicalVariables.length_of_domains" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the length of domains in the spin matrix, considering ring-like boundary conditions.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>np.ndarray: Number of elements per label in the labels matrix.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.topological_variables.TopologicalVariables.mean_domain_size">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mean_domain_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></span><a class="reference internal" href="_modules/isingenerator/topological_variables.html#TopologicalVariables.mean_domain_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.topological_variables.TopologicalVariables.mean_domain_size" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the average size of domains in the spin matrix, considering ring-like boundary conditions.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>float: Average size of the domains in the matrix.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.topological_variables.TopologicalVariables.number_of_domains">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">number_of_domains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></span><a class="reference internal" href="_modules/isingenerator/topological_variables.html#TopologicalVariables.number_of_domains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.topological_variables.TopologicalVariables.number_of_domains" title="Link to this definition">¶</a></dt>
+<dd><p>Count the number of domains in the spin matrix, considering ring-like boundary conditions.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>int: Number of labels in the matrix.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-isingenerator.writer_csv">
+<span id="isingenerator-writer-csv-module"></span><h2>isingenerator.writer_csv module<a class="headerlink" href="#module-isingenerator.writer_csv" title="Link to this heading">¶</a></h2>
+<p>Module providing a class to generate a CSV file</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="isingenerator.writer_csv.WriterCsv">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">isingenerator.writer_csv.</span></span><span class="sig-name descname"><span class="pre">WriterCsv</span></span><a class="reference internal" href="_modules/isingenerator/writer_csv.html#WriterCsv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.writer_csv.WriterCsv" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A class that contains the code that generates the CSV file with the simulation data for the Ising model.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="isingenerator.writer_csv.WriterCsv.write_data">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">write_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="_modules/isingenerator/writer_csv.html#WriterCsv.write_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#isingenerator.writer_csv.WriterCsv.write_data" title="Link to this definition">¶</a></dt>
+<dd><p>Write simulation data to a CSV file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>file_name (str): The name of the CSV file.
+data (str): The simulation data to be written.
+encoding (str, optional): The encoding of the CSV file. Defaults to “utf-8”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-isingenerator">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-isingenerator" title="Link to this heading">¶</a></h2>
+<p>A Python Package to easily generate data of the Ising Model using the Metropolis Algorithm, 
+the most commonly used Markov Chain Monte Carlo method to calculate estimations for this system.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">ISINGenerator</a></h1>
+
+
+
+<p class="blurb">Creation of DataBase for 2D Ising Model</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=erick-rios&repo=ISINGenerator&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Erick Jesús Ríos González.
+      
+      |
+      <a href="_sources/isingenerator.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/erick-rios/ISINGenerator" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-109078714-2']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>
