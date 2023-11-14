@@ -65,6 +65,7 @@ class TopologicalVariables:
         """
         matrix_copy = matrix.copy()
         return TopologicalVariables.label_ring(matrix_copy)[0]
+    
     @staticmethod
     def number_of_domains(matrix: np.ndarray) -> int:
         """
