@@ -19,6 +19,7 @@ import numpy as np
 
 
 class Neighbors:
+    """Static class to calculate quatities due to nearest neughbors"""
     @staticmethod
     def sum_of_neighbors(matrix: np.ndarray) -> int:
         """Calculate the sum of nearby neighbors in the spin matrix, considering periodic boundary conditions.
@@ -38,7 +39,7 @@ class Neighbors:
 
     @staticmethod
     def sum_neighbors_position(matrix: np.ndarray, row: int, column: int, N: int) -> int:
-        """Function to get the sum of the nearest neighbors due to a spin in a site on the Spin matrix.
+        """Get the sum of the nearest neighbors due to a spin in a site on the Spin matrix.
 
         Args:
             row (int): Row of position in matrix.
