@@ -37,7 +37,14 @@ extensions = [
 ]
 
 autodoc_modules = {
-    'mimodulo': 'path/to/mimodulo.py',  # Reemplaza 'path/to/mimodulo.py' con la ruta real
+    'CreateDataSet': 'src/CreateDataSimulation.py',
+    "IsingModel2D": 'src/IsingModel2D.py',
+    'LatticeSquare': 'src/LatticeSquare.py',
+    'MainSimulation': 'src/MainSimulation.py',
+    'MonteCarloSimulation':'src/MonteCarloSimulation.py',
+    'Neighbors': 'src/Neighbors.py',
+    'TopologicalVariables': 'src/TopologicalVariables.py',
+    'WriterCSV': 'src/WriterCSV.py'
 }
 
 
