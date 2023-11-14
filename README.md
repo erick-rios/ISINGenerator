@@ -11,7 +11,7 @@ A library for creating a database that allows analyzing the energy, magnetizatio
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/erick-rios/ISINGenerator
 ```
 
 Go to the project directory
@@ -41,6 +41,7 @@ Install dependencies
 [MIT](https://choosealicense.com/licenses/mit/)
 
 
+
 ![Logo]()
 
 
@@ -51,10 +52,22 @@ Install dependencies
 
 ## Usage/Examples
 
-```javascript
-import Component from 'my-project'
+```py
+import CreateDataSimulation from create_data_simulation
 
-function App() {
-  return <Component />
-}
+
+create_data_simulation = CreateDataSimulation(
+        "/home/soundskydriver/Documents/ISINGMODEL2DGenerator/docs/hazte_porfavor.csv",
+        20,
+        1,
+        2.0,
+        0.1,
+        3
+    )
+
+print(create_data_simulation.generate_csv_data_zero_magnetic_field())
+
+## Support
+
+For support, email erickjesusriosgonzalez@gmail.com or join our Slack channel.
 ```
