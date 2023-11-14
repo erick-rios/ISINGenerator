@@ -24,7 +24,7 @@ class TopologicalVariables:
     """Class for calculating topological variables in a spin matrix."""
 
     @staticmethod
-    def label_ring(matrix:np.array) -> list:
+    def label_ring(matrix:np.ndarray) -> list:
         """
         Label the holes in the spin matrix, considering ring-like boundary conditions.
 
@@ -56,17 +56,17 @@ class TopologicalVariables:
         return [labels, num_labels, max_label]
 
     @staticmethod
-    def find_domains(matrix: np.array) -> np.array:
+    def find_domains(matrix: np.ndarray) -> np.ndarray:
         """
         Label the holes in the spin matrix, considering boundary conditions.
 
         Returns:
-            np.array: The matrix with labels, taking into account boundary conditions.
+            np.ndarray: The matrix with labels, taking into account boundary conditions.
         """
         matrix_copy = matrix.copy()
         return TopologicalVariables.label_ring(matrix_copy)[0]
     @staticmethod
-    def number_of_domains(matrix: np.array) -> int:
+    def number_of_domains(matrix: np.ndarray) -> int:
         """
         Count the number of domains in the spin matrix, considering ring-like boundary conditions.
 
@@ -77,12 +77,12 @@ class TopologicalVariables:
         return TopologicalVariables.label_ring(matrix_copy)[1]
 
     @staticmethod
-    def length_of_domains(matrix: np.array) -> np.array:
+    def length_of_domains(matrix: np.ndarray) -> np.ndarray:
         """
         Calculate the length of domains in the spin matrix, considering ring-like boundary conditions.
 
         Returns:
-            np.array: Number of elements per label in the labels matrix.
+            np.ndarray: Number of elements per label in the labels matrix.
         """
         matrix_copy = matrix.copy()
         labels, _, num_features = TopologicalVariables.label_ring(matrix_copy)
@@ -93,7 +93,7 @@ class TopologicalVariables:
         return domain_lengths
 
     @staticmethod
-    def mean_domain_size(matrix: np.array) -> float:
+    def mean_domain_size(matrix: np.ndarray) -> float:
         """
         Calculate the average size of domains in the spin matrix, considering ring-like boundary conditions.
 

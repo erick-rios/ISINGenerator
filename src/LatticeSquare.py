@@ -21,20 +21,58 @@ import numpy as np
 
 
 class LatticeSquare:
-    def __init__(self, rows: int = 15, columns: int = 15, percentange_ones: float = 0.8) -> None:
+    """This class represents a 2D lattice, where each element is initialized randomly with ones and zeros based on the specified percentage of ones."""
+
+    def __init__(
+        self, rows: int = 15, columns: int = 15, percentange_ones: float = 0.8
+    ) -> None:
+        """Initialize an instance of the LatticeSquare class.
+
+        Args:
+            rows (int, optional): Number of rows in the lattice. Defaults to 15.
+            columns (int, optional): Number of columns in the lattice. Defaults to 15.
+            percentage_ones (float, optional): Percentage of ones in the lattice. Should be a float between 0 and 1.
+                Defaults to 0.8.
+
+
+        Example:
+            >>> lattice = LatticeSquare()
+            >>> lattice_with_custom_params = LatticeSquare(rows=10, columns=20, percentage_ones=0.5)
+        """
+
         self._rows = rows
         self._columns = columns
         self._percentage_ones = percentange_ones
         self._matrix = None
 
     def __repr__(self) -> str:
-        return f"<LatticeSquare[_rows={self.rows}, columns={self._columns}, percentage_ones={self._percentage_ones}]>"
+        """Return a string representation of the LatticeSquare object.
+
+        Returns:
+            str: A string containing information about the rows, columns, and percentage of ones.
+
+        Example:
+            >>> lattice = LatticeSquare()
+            >>> repr(lattice)
+            '<LatticeSquare[_rows=15, _columns=15, percentage_ones=0.8]>'
+        """
+        return f"<LatticeSquare[_rows={self._rows}, columns={self._columns}, percentage_ones={self._percentage_ones}]>"
 
     def __str__(self) -> str:
-        return f"LatticeSquare\n_rows={self.rows}\ncolumns={self._columns}\npercentage_ones={self._percentage_ones}"
+        """Return a formatted string representation of the LatticeSquare object.
+
+        Returns:
+            str: A formatted string containing information about the rows, columns, and percentage of ones.
+
+        Example:
+            >>> lattice = LatticeSquare()
+            >>> str(lattice)
+            'LatticeSquare\n_rows=15\ncolumns=15\npercentage_ones=0.8'
+        """
+        return f"LatticeSquare\n_rows={self._rows}\ncolumns={self._columns}\npercentage_ones={self._percentage_ones}"
 
     def create_matrix(self) -> np.array:
-        """Function to create the spin matrix for the 2D Ising model with a given distribution of positive spins.
+        """Create the spin matrix for the 2D Ising model with a given distribution of positive spins.
 
         Args:
             rows (int): Number of rows of spin matrix.
@@ -59,13 +97,13 @@ class LatticeSquare:
 
         # Creates the matrix from the shuffled list.
         matrix = np.array(elements).reshape(self._rows, self._columns)
-        
+
         self._matrix = matrix
 
         return matrix
 
     def random_position(self) -> list:
-        """Function to choose a random position from spin matrix.
+        """Choose a random position from spin matrix.
 
 
         Args:
@@ -78,13 +116,49 @@ class LatticeSquare:
         i = random.randint(0, m - 1)
         j = random.randint(0, n - 1)
         return [i, j]
-    
-    #properties
-    
+
+    # properties
+
     def __getattribute__(self, _name: str) -> Any:
+        """Retrieve the value of the specified attribute.
+
+        This method is automatically called when attempting to access an attribute of an object.
+
+        Args:
+            _name (str): The name of the attribute to retrieve.
+
+        Returns:
+            Any: The value of the specified attribute.
+
+        Raises:
+            AttributeError: If the attribute is not found.
+
+        Example:
+            >>> obj = LatticeSquare(3, 4, 0.9)
+            >>> obj.attribute_name  # This triggers __getattribute__
+            'attribute_value'
+        """
         return object.__getattribute__(self, _name)
 
     # setters
 
     def __setattr__(self, _name: str, value: Any) -> None:
+        """Set the value of the specified attribute.
+
+        This method is automatically called when attempting to set the value of an attribute of an object.
+
+        Args:
+            _name (str): The name of the attribute to set.
+            value (Any): The value to assign to the attribute.
+
+        Returns:
+            None
+
+        Raises:
+            AttributeError: If the attribute is read-only or cannot be set.
+
+        Example:
+            >>> obj = LatticeSquare(3, 4, 0.8)
+            >>> obj.attribute_name = 'new_value'  # This triggers __setattr__
+        """
         object.__setattr__(self, _name, value)

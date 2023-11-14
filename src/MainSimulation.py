@@ -22,8 +22,6 @@ from src.IsingModel2D import *
 from src.TopologicalVariables import *
 
 
-
-
 class MainSimulation:
     """Static class for implementing the main simulation of 2D Ising Model"""
 
@@ -38,7 +36,7 @@ class MainSimulation:
         epsilon: int = 15,
         create_images: bool = False,
     ) -> list:
-        """Runs the simulation of the 2D Ising Model.  
+        """Runs the simulation of the 2D Ising Model.
 
         Args:
             kT (float): Boltzmann constant times.
@@ -56,33 +54,37 @@ class MainSimulation:
 
         # Here we create memory arrays to store the data of interest.
 
-        mean_domain_size_array = []
-        domain_number_array = []
-        magnetization_array = []
-        energy_array = []
+        mean_domain_size_array: list[float] = []
+        domain_number_array: list[float] = []
+        magnetization_array: list[float] = []
+        energy_array: list[float] = []
 
         half = steps / 2
 
         # Initialize the spin array
         lattice = LatticeSquare(dimension, dimension)
         matrix = lattice.create_matrix()
-        ising_model = IsingModel2D(matrix) 
+        ising_model = IsingModel2D(matrix)
 
         for step in range(steps):
-            ising_model.__setattr__('_matrix', MonteCarloSimulation.markov_chain_move(lattice, dimension, 1 / kT))
+            setattr(
+                ising_model,
+                "_matrix",
+                MonteCarloSimulation.markov_chain_move(lattice, dimension, 1 / kT),
+            )
             if step >= half:
                 if step % epsilon == 0:
-                    magnetization_array.append(
-                        ising_model.calculate_magnetization()
-                    )
-                    energy_array.append(
-                        ising_model.calculate_energy(J, B, mu)
-                    )
+                    magnetization_array.append(ising_model.calculate_magnetization())
+                    energy_array.append(ising_model.calculate_energy(J, B, mu))
                     domain_number_array.append(
-                        TopologicalVariables.number_of_domains(matrix)
+                        TopologicalVariables.number_of_domains(
+                            getattr(ising_model, "_matrix")
+                        )
                     )
                     mean_domain_size_array.append(
-                        TopologicalVariables.mean_domain_size(matrix)
+                        TopologicalVariables.mean_domain_size(
+                            getattr(ising_model, "_matrix")
+                        )
                     )
 
         return [

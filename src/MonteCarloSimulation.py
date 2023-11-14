@@ -24,32 +24,37 @@ class MonteCarloSimulation:
     """Class for implementing the Markov Chain Algorithm."""
 
     @staticmethod
-    def markov_chain_move(lattice: LatticeSquare, N: int, beta: float) -> np.array:
-        """This method is for implementing the Monte Carlo method using the Metropolis algorithm. The goal is to efficiently make the change until reaching the base state using Boltzmann probability as a condition.
+    def markov_chain_move(lattice: LatticeSquare, N: int, beta: float) -> np.ndarray:
+        """Implement the Monte Carlo method using the Metropolis algorithm. The goal is to efficiently make the change until reaching the base state using Boltzmann probability as a condition.
 
         Args:
-            matrix (np.array): Spin matrix
+            matrix (np.ndarray): Spin matrix
             N (int): Dimension of the spin matrix.
             beta (float): One divided Boltzmann constant times temperature.
 
         Returns:
-            np.array: The matrix after making spin changes, aiming to achieve the minimum energy.
+            np.ndarray: The matrix after making spin changes, aiming to achieve the minimum energy.
         """
         a, b = lattice.random_position()
-        site = lattice._matrix[a, b]
-        sum_neigh = Neighbors.sum_neighbors_position(lattice._matrix, a, b, N)
+        site = getattr(lattice, "_matrix")[a, b]
+        sum_neigh = Neighbors.sum_neighbors_position(
+            getattr(lattice, "_matrix"),
+            a,
+            b,
+            N
+            )
         delta_e = MonteCarloSimulation.delta_energy(site, sum_neigh)
         if delta_e < 0:
             site *= -1
         elif np.random.random() < np.exp(-delta_e * beta):
             site *= -1
-        lattice._matrix[a, b] = site
+        getattr(lattice, "_matrix")[a, b] = site
 
-        return lattice._matrix
+        return getattr(lattice, "_matrix")
 
     @staticmethod
     def delta_energy(value_of_site: int, sum_nb: int) -> int:
-        """Function to get the delta energy to implement the Monte Carlo Simulation.
+        """Caltulate delta energy to implement the Markov Chain.
 
         Args:
             value_of_site (int): Value of spin in spin matrix site chosen.

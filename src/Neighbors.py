@@ -20,7 +20,7 @@ import numpy as np
 
 class Neighbors:
     @staticmethod
-    def sum_of_neighbors(matrix: np.array) -> int:
+    def sum_of_neighbors(matrix: np.ndarray) -> int:
         """Calculate the sum of nearby neighbors in the spin matrix, considering periodic boundary conditions.
 
         Returns:
@@ -37,7 +37,7 @@ class Neighbors:
         return sum_neighbors
 
     @staticmethod
-    def sum_neighbors_position(matrix: np.array, row: int, column: int, N: int) -> int:
+    def sum_neighbors_position(matrix: np.ndarray, row: int, column: int, N: int) -> int:
         """Function to get the sum of the nearest neighbors due to a spin in a site on the Spin matrix.
 
         Args:

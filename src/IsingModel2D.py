@@ -28,27 +28,59 @@ import numpy as np
 class IsingModel2D:
     """Class for calculating pnysical variables in a spin matrix."""
 
-    def __init__(self, matrix: np.array) -> None:
-        """Initializes an instance of the IsingModel2D class
+    def __init__(self, matrix: np.ndarray) -> None:
+        """Initialize an instance of the IsingModel2D class.
+
+        This class represents a 2D Ising model with a given spin matrix.
 
         Args:
-            matrix (np.array) = Spin matrix
+            matrix (np.ndarray): The spin matrix representing the Ising model.
+
+        Attributes:
+            _matrix (np.ndarray): The spin matrix of the Ising model.
+            _N (int): The dimension of the Ising model, inferred from the shape of the matrix.
+
+        Example:
+            >>> import numpy as np
+            >>> spin_matrix = np.array([[1, -1], [-1, 1]])
+            >>> ising_model = IsingModel2D(spin_matrix)
         """
 
         self._matrix = matrix
         self._N = matrix.shape[0]
 
     def __repr__(self) -> str:
-        return f"<IsingModel2D[_matrix = {self.__getattribute__('_matrix')}, _N = {self.__getattribute__('_N')}]>"
+        """Return a string representation of the IsingModel2D object.
+
+        Returns:
+            str: A string representation containing information about the spin matrix and dimension.
+
+        Example:
+            >>> ising_model = IsingModel2D(...)
+            >>> repr(ising_model)
+            '<IsingModel2D(_matrix=[[1, -1], [-1, 1]], _N=2)>'
+        """
+
+        return f"<IsingModel2D(_matrix={self._matrix}, _N={self._N})>"
 
     def __str__(self) -> str:
+        """Return a formatted string representation of the IsingModel2D object.
+
+        Returns:
+            str: A formatted string containing information about the spin matrix and dimension.
+
+        Example:
+            >>> ising_model = IsingModel2D(...)
+            >>> str(ising_model)
+            'IsingModel2D:
+            matrix = [[1, -1], [-1, 1]]
+            dimension = (2, 2)'
+        """
         return (
-            "IsingModel2D:\n"
-            + f"matrix = {self.__getattribute__('_matrix')}\n"
-            + f"dimension = {self.__getattribute__('_N')}, {self.__getattribute__('_N')}\n"
+            f"IsingModel2D:\n"
+            f"matrix = {self._matrix}\n"
+            f"dimension = ({self._N}, {self._N})\n"
         )
-
-
 
     def calculate_energy(
         self, J: float = 1.0, B: float = 1.0, mu: float = 1.0
@@ -75,13 +107,11 @@ class IsingModel2D:
 
         return total_energy
 
-
-
     def calculate_magnetization(self) -> float:
         """This method returns the magnetization of the spin matrix.
 
         Args:
-            matrix (np.array): spin matrix
+            matrix (np.ndarray): spin matrix
 
         Returns:
             float: Total magnetization of spin matrix.
@@ -92,9 +122,45 @@ class IsingModel2D:
     # properties
 
     def __getattribute__(self, _name: str) -> Any:
+        """Retrieve the value of the specified attribute.
+
+        This method is automatically called when attempting to access an attribute of an object.
+
+        Args:
+            _name (str): The name of the attribute to retrieve.
+
+        Returns:
+            Any: The value of the specified attribute.
+
+        Raises:
+            AttributeError: If the attribute is not found.
+
+        Example:
+            >>> obj = IsingModel2D()
+            >>> obj.attribute_name  # This triggers __getattribute__
+            'attribute_value'
+        """
         return object.__getattribute__(self, _name)
 
     # setters
 
     def __setattr__(self, _name: str, value: Any) -> None:
+        """Set the value of the specified attribute.
+
+        This method is automatically called when attempting to set the value of an attribute of an object.
+
+        Args:
+            _name (str): The name of the attribute to set.
+            value (Any): The value to assign to the attribute.
+
+        Returns:
+            None
+
+        Raises:
+            AttributeError: If the attribute is read-only or cannot be set.
+
+        Example:
+            >>> obj = IsingModel2D()
+            >>> obj.attribute_name = 'new_value'  # This triggers __setattr__
+        """
         object.__setattr__(self, _name, value)
