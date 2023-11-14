@@ -40,11 +40,6 @@ Install dependencies
 
 [GPL-3.0 license](https://choosealicense.com/licenses/gpl-3.0/)
 
-
-
-![Logo]()
-
-
 ## Screenshots
 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
@@ -57,7 +52,7 @@ from create_data_simulation import CreateDataSimulation
 
 
 create_data_simulation = CreateDataSimulation(
-        "/home/soundskydriver/Documents/ISINGMODEL2DGenerator/docs/hazte_porfavor.csv",
+        "/home/../../../data_simulation.csv",
         20,
         1,
         2.0,
