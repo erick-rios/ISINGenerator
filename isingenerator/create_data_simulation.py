@@ -17,10 +17,10 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA  02110-1301, USA.
 
+import numpy as np
 from typing import Any
 from isingenerator.main_simulation import MainSimulation
 from isingenerator.writer_csv import WriterCsv
-import numpy as np
 
 
 class CreateDataSimulation:
@@ -51,7 +51,7 @@ class CreateDataSimulation:
             final_step_kT (float): The final temperature.
             delta_kT (float): The temperature step.
             dimension (int): The dimension of the Ising Model 2D.
-            percentage_ones (float): 
+            percentage_ones (float):
             J (float, optional): The constant of interaction between spins. Defaults to 1.0.
             mu (float, optional): The constant of magnetic moment. Defaults to 1.0.
             epsilon (int, optional): An optional parameter with a default value of 15.
@@ -89,6 +89,7 @@ class CreateDataSimulation:
         self._J = J
         self._mu = mu
         self._epsilon = epsilon
+
         if (
             initial_step_B is not None
             and final_step_B is not None
@@ -109,9 +110,9 @@ class CreateDataSimulation:
         Example:
             >>> simulation = CreateDataSimulation(...)
             >>> repr(simulation)
-            '<CreateDataSimulation(_file_name=..., steps=..., initial_step_kT=..., 
-            final_step_kT=..., delta_temperature=..., initial_step_B=..., final_step_B=..., 
-            delta_B=..., B=..., dimension=..., J=..., mu=...)>'    
+            '<CreateDataSimulation(_file_name=..., steps=..., initial_step_kT=...,
+            final_step_kT=..., delta_temperature=..., initial_step_B=..., final_step_B=...,
+            delta_B=..., B=..., dimension=..., J=..., mu=...)>'
         """
         return (
             "<Create Data Simulation["
@@ -126,7 +127,8 @@ class CreateDataSimulation:
             + f"B = {self._B}, "
             + f"dimension = {self._dimension}, "
             + f"percentage_ones = {self._percentage_ones}, "
-            + f"J = {self._J}, " + f"mu = {self._mu}]>"
+            + f"J = {self._J}, "
+            + f"mu = {self._mu}]>"
         )
 
     def __str__(self) -> str:
