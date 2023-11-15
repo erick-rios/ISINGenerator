@@ -5,10 +5,11 @@
 # Required
 version: 2
 
+build:
+  image: latest
 
 
 python:
-  version: 3.9
   install:
     - requirements: docs/requirements.txt
     - method: pip
