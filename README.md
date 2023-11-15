@@ -18,8 +18,6 @@ Instal by PyPI
 ```bash
   $ python3 -m pip install ISINGenerator
 ```
-## Acknowledgements
-
 ## Authors
 
 - [@erick-rios](https://github.com/erick-rios)
