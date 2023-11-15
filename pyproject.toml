@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=61.0", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ISINGenerator"
+description = "Creation of DataBase for 2D Ising Model"
+dynamic = ["version", "readme"]
+authors = [
+  { name="Erick Rios", email="erickjesusriosgonzalez@gmail.com" },
+]
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science Industry",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English"
+]
+dependencies = [
+    "unidecode"
+]
+keywords = ["Ising Model", "Statical Mechanics", "analysis", "physics"]
+
+[project.scripts]
+curp = "isingenerator.__main__:main"
+
+[project.urls]
+"Homepage" = "http://isingenerator.readthedocs.io/"
+"Repository" = "https://github.com/erick-rios/ISINGenerator"
+
+[tool.setuptools.dynamic]
+version = {attr = "isingenerator.__about__.__version__"}
+readme = {file = ["README.md"], content-type = "text/markdown"}
+
+[project.optional-dependencies]
+test = ["pytest", "hypothesis", "coverage"]
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+omit = [
+    "*/python?.?/*",
+    "*/lib-python/?.?/*.py",
+    "*/pypy/*"
+]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:"
+]
