@@ -5,6 +5,20 @@
 # Required
 version: 2
 
+sphinx:
+  configuration: docs/source/conf.py
+
+python:
+  install:
+    - requirements: docs/requirements.txt
+    - method: pip
+      path: .
+      extra_requirements:
+        - docs
+    - method: pip
+      extra_requirements:
+        - docs
+
 # Set the OS, Python version and other tools you might need
 build:
   os: ubuntu-22.04
