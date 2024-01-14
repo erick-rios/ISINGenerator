@@ -17,10 +17,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA  02110-1301, USA.
 
-import numpy as np
-from typing import Any
+
 from isingenerator.main_simulation import MainSimulation
 from isingenerator.writer_csv import WriterCsv
+from typing import Any
+import numpy as np
 
 
 class CreateDataSimulation:

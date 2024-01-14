@@ -1,4 +1,4 @@
-from isingenerator.create_data_simulation import CreateDataSimulation
+from src.isingenerator.create_data_simulation import CreateDataSimulation
 
 create_data_simulation = CreateDataSimulation(
         "/home/soundskydriver/Documents/ISINGenerator/docs/data.csv",
