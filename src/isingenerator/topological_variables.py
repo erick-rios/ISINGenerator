@@ -23,22 +23,22 @@ import numpy as np
 import scipy.ndimage
 
 
-
 class TopologicalVariables:
     """Class for calculating topological variables in a spin matrix."""
 
     _labels: np.ndarray = None
-    _num_labels: float  = None
+    _num_labels: float = None
     _max_label: float = None
-    _domain_lengths : List[float] = None
-    
+    _domain_lengths: List[float] = None
+
     @staticmethod
-    def label_ring(matrix:np.ndarray) -> List:
+    def label_ring(matrix: np.ndarray) -> List:
         """
         Label the holes in the spin matrix, considering ring-like boundary conditions.
 
         Returns:
-            list: A list containing the matrix with labels, the number of labels, and the maximum label.
+            list: A list containing the matrix with labels, the number of labels, and 
+            the maximum label.
         """
         matrix_copy = matrix.copy() + 1
         labels, num_labels = scipy.ndimage.label(matrix_copy > 0)
@@ -61,12 +61,12 @@ class TopologicalVariables:
             num_labels = len(np.unique(labels)) - 1
 
         max_label = np.max(np.unique(labels))
-        
+
         TopologicalVariables._labels = labels
         TopologicalVariables._num_labels = num_labels
         TopologicalVariables._max_label = max_label
 
-        #return [labels, num_labels, max_label]
+        # return [labels, num_labels, max_label]
 
     @staticmethod
     def find_domains(matrix: np.ndarray = None) -> np.ndarray:
@@ -74,24 +74,26 @@ class TopologicalVariables:
         Label the holes in the spin matrix, considering boundary conditions.
 
         Returns:
-            np.ndarray: The matrix with labels, taking into account boundary conditions.
+            np.ndarray: The matrix with labels, taking into account boundary 
+            conditions.
         """
-        #matrix_copy = matrix.copy()
-        #return TopologicalVariables.label_ring(matrix_copy)[0]
+        # matrix_copy = matrix.copy()
+        # return TopologicalVariables.label_ring(matrix_copy)[0]
         if TopologicalVariables._labels is None:
             TopologicalVariables.label_ring(matrix)
         return TopologicalVariables._labels
-    
+
     @staticmethod
     def number_of_domains(matrix: np.ndarray = None) -> int:
         """
-        Count the number of domains in the spin matrix, considering ring-like boundary conditions.
+        Count the number of domains in the spin matrix, considering ring-like 
+        boundary conditions.
 
         Returns:
             int: Number of labels in the matrix.
         """
-        #matrix_copy = matrix.copy()
-        #return TopologicalVariables.label_ring(matrix_copy)[1]
+        # matrix_copy = matrix.copy()
+        # return TopologicalVariables.label_ring(matrix_copy)[1]
         if TopologicalVariables._num_labels is None:
             TopologicalVariables.label_ring(matrix)
         return TopologicalVariables._num_labels
@@ -99,41 +101,47 @@ class TopologicalVariables:
     @staticmethod
     def length_of_domains(matrix: np.ndarray = None) -> np.ndarray:
         """
-        Calculate the length of domains in the spin matrix, considering ring-like boundary conditions.
+        Calculate the length of domains in the spin matrix, considering ring-like
+        boundary conditions.
 
         Args:
-            matrix (np.ndarray, optional): The matrix of the microstate. Defaults to None.
+            matrix (np.ndarray, optional): The matrix of the microstate. Defaults 
+            to None.
 
         Returns:
             np.ndarray: Number of elements per label in the labels matrix.
         """
-        #matrix_copy = matrix.copy()
-        #labels, _, num_features = TopologicalVariables.label_ring(matrix)
+        # matrix_copy = matrix.copy()
+        # labels, _, num_features = TopologicalVariables.label_ring(matrix)
         if TopologicalVariables._labels is None:
             TopologicalVariables.label_ring(matrix)
-        
+
         labels = TopologicalVariables._labels
         num_features = TopologicalVariables._max_label
         TopologicalVariables._domain_lengths = scipy.ndimage.histogram(
             labels, 0, num_features + 1, num_features + 1
         )[1:]
-        
+
         return TopologicalVariables._domain_lengths
 
     @staticmethod
     def mean_domain_size(matrix: np.ndarray = None) -> float:
         """
-        Calculate the average size of domains in the spin matrix, considering ring-like boundary conditions.
+        Calculate the average size of domains in the spin matrix, considering 
+        ring-like boundary conditions.
 
         Args:
-            matrix (np.ndarray, optional): Matrix of the microstate. Defaults to None.
+            matrix (np.ndarray, optional): Matrix of the microstate. Defaults 
+            to None.
 
         Returns:
             float: Average size of the domains in the matrix.
         """
-        #matrix_copy = matrix.copy()
+        # matrix_copy = matrix.copy()
         if TopologicalVariables._domain_lengths is None:
-            TopologicalVariables._domain_lengths = TopologicalVariables.length_of_domains(matrix)
+            TopologicalVariables._domain_lengths = (
+                TopologicalVariables.length_of_domains(matrix)
+            )
         mask = TopologicalVariables._domain_lengths != 0
         non_zero_values = TopologicalVariables._domain_lengths[mask]
 
@@ -143,9 +151,9 @@ class TopologicalVariables:
         mean = np.mean(non_zero_values)
 
         return mean
-    
+
     @staticmethod
-    def get_num_labels()-> int:
+    def get_num_labels() -> int:
         """
         Returns the number of labels calculated by the las call to label_ring
 
@@ -153,23 +161,23 @@ class TopologicalVariables:
             int: Number of labels
         """
         return TopologicalVariables._num_labels
-    
+
     @staticmethod
-    def get_max_label()->int:
+    def get_max_label() -> int:
         """
         Returns the maximum label calculated by the las call to label_ring
 
-        Returns: 
+        Returns:
             int: Maximum label calculated
         """
         return TopologicalVariables._max_label
 
     @staticmethod
-    def get_labels()->int:
+    def get_labels() -> int:
         """
         Returns the maximum label calculated by the las call to label_ring
 
-        Returns: 
+        Returns:
             int: Maximum label calculated
         """
         return TopologicalVariables._labels
