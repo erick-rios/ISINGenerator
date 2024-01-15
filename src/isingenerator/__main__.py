@@ -1,5 +1,5 @@
 import argparse
-from isingenerator.create_data_simulation import CreateDataSimulation
+from src.isingenerator.create_data_simulation import CreateDataSimulation
 
 def main() -> int:
     parser = argparse.ArgumentParser(

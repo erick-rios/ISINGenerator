@@ -18,8 +18,8 @@
 # Boston, MA  02110-1301, USA.
 
 
-from isingenerator.main_simulation import MainSimulation
-from isingenerator.writer_csv import WriterCsv
+from src.isingenerator.main_simulation import MainSimulation
+from src.isingenerator.writer_csv import WriterCsv
 from typing import Any
 import numpy as np
 

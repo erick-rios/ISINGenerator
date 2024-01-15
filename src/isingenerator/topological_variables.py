@@ -16,6 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA  02110-1301, USA.
+
 from typing import List
 
 import numpy as np
@@ -28,8 +29,8 @@ class TopologicalVariables:
 
     _labels: np.ndarray = None
     _num_labels: float  = None
-    _max_label: float = None 
-    _domain_lengths : np.ndarray = None
+    _max_label: float = None
+    _domain_lengths : List[float] = None
     
     @staticmethod
     def label_ring(matrix:np.ndarray) -> List:
@@ -116,7 +117,7 @@ class TopologicalVariables:
         TopologicalVariables._domain_lengths = scipy.ndimage.histogram(
             labels, 0, num_features + 1, num_features + 1
         )[1:]
-
+        
         return TopologicalVariables._domain_lengths
 
     @staticmethod
@@ -172,4 +173,3 @@ class TopologicalVariables:
             int: Maximum label calculated
         """
         return TopologicalVariables._labels
-    

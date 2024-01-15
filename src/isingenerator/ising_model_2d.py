@@ -22,7 +22,7 @@ ISING MODEL 2D SQUARE LATTICE
 
 from typing import Any
 import numpy as np
-from isingenerator.neighbors import Neighbors
+from src.isingenerator.neighbors import Neighbors
 
 
 class IsingModel2D:

@@ -16,10 +16,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA  02110-1301, USA.
 
-from isingenerator.lattice_square import LatticeSquare
-from isingenerator.neighbors import Neighbors
 import numpy as np
-
+from src.isingenerator.lattice_square import LatticeSquare
+from src.isingenerator.neighbors import Neighbors
 
 class MonteCarloSimulation:
     """Class for implementing the Markov Chain Algorithm."""
