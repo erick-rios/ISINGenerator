@@ -37,10 +37,11 @@ class WriterCsv:
                 [
                     "kT",
                     "B",
-                    "Energy",
-                    "Magnetization",
-                    "Domain Number",
-                    "Mean Domains Size",
+                    "energy",
+                    "magnetization",
+                    "Magnetization_per_site"
+                    "domain_number",
+                    "mean_domain_size",
                 ]
             )
             csv_writer.writerows(data)

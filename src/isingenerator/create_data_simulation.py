@@ -20,7 +20,7 @@
 
 from src.isingenerator.main_simulation import MainSimulation
 from src.isingenerator.writer_csv import WriterCsv
-from typing import Any
+from typing import Any, List, Dict
 import numpy as np
 
 
@@ -115,22 +115,37 @@ class CreateDataSimulation:
             final_step_kT=..., delta_temperature=..., initial_step_B=..., final_step_B=...,
             delta_B=..., B=..., dimension=..., J=..., mu=...)>'
         """
-        return (
-            "<Create Data Simulation["
-            + f"_file_name = {self._file_name}, "
-            + f"steps = {self._steps}, "
-            + f"initial_step_kT = {self._initial_step_kT}, "
-            + f"initial_step_kT = {self._final_step_kT}, "
-            + f"delta_temperature = {self._delta_kT}\n"
-            + f"initial_step_B = {self._initial_step_B}, "
-            + f"initial_step_B = {self._final_step_B}, "
-            + f"delta_B = {self._delta_B}, "
-            + f"B = {self._B}, "
-            + f"dimension = {self._dimension}, "
-            + f"percentage_ones = {self._percentage_ones}, "
-            + f"J = {self._J}, "
-            + f"mu = {self._mu}]>"
-        )
+        if self._initial_step_B is None and self._final_step_B is None:
+            return (
+                "<Create Data Simulation["
+                + f"_file_name = {self._file_name}, "
+                + f"steps = {self._steps}, "
+                + f"initial_step_kT = {self._initial_step_kT}, "
+                + f"final_step_kT = {self._final_step_kT}, "
+                + f"delta_temperature = {self._delta_kT}\n"
+                + f"B = {self._B}, "
+                + f"dimension = {self._dimension}, "
+                + f"percentage_ones = {self._percentage_ones}, "
+                + f"J = {self._J}, "
+                + f"mu = {self._mu}]>"
+            )
+        else:
+            return (
+                "<Create Data Simulation["
+                + f"_file_name = {self._file_name}, "
+                + f"steps = {self._steps}, "
+                + f"initial_step_kT = {self._initial_step_kT}, "
+                + f"final_step_kT = {self._final_step_kT}, "
+                + f"delta_temperature = {self._delta_kT}\n"
+                + f"initial_step_B = {self._initial_step_B}, "
+                + f"initial_step_B = {self._final_step_B}, "
+                + f"delta_B = {self._delta_B}, "
+                + f"B = {self._B}, "
+                + f"dimension = {self._dimension}, "
+                + f"percentage_ones = {self._percentage_ones}, "
+                + f"J = {self._J}, "
+                + f"mu = {self._mu}]>"
+            )
 
     def __str__(self) -> str:
         """Generate a string representation of the object CreateDataSimulation.
@@ -197,7 +212,8 @@ class CreateDataSimulation:
             str: The name of the file created.
         """
         # Create a list to store data.
-        data: list[float] = []
+        data: List[float] = []
+
 
         # Perform nested loops
         for k_T in np.arange(
@@ -233,13 +249,14 @@ class CreateDataSimulation:
         """
         # Create a list to store data.
         data: list[float] = []
+        # Create an empty list to store dictionaries of matrices
+        matrices_data: Dict[float: Dict[float, np.ndarray]] = {}
 
         # Perform the nested loop
         for k_T in np.arange(
             self._initial_step_kT, self._final_step_kT + self._delta_kT, self._delta_kT
         ):
-            data.append(
-                MainSimulation.create_observables(
+            results = MainSimulation.create_observables(
                     self._steps,
                     k_T,
                     self._dimension,
@@ -249,8 +266,9 @@ class CreateDataSimulation:
                     self._mu,
                     self._epsilon,
                 )
-            )
-
+            data.append(results[:-1])
+            # Use np.hstack to horizontally stack matrices
+            matrices_data[k_T] = results[-1]
         # Write data to CSV file
         WriterCsv.write_data(self._file_name, data)
 

@@ -17,6 +17,7 @@
 # Boston, MA  02110-1301, USA.
 
 import numpy as np
+from typing import List, Dict
 from src.isingenerator.monte_carlo_simulation import MonteCarloSimulation
 from src.isingenerator.lattice_square import LatticeSquare
 from src.isingenerator.ising_model_2d import IsingModel2D
@@ -37,7 +38,7 @@ class MainSimulation:
         mu: float = 1,
         epsilon: int = 15,
         create_images: bool = False,
-    ) -> list:
+    ) -> List:
         """Runs the simulation of the 2D Ising Model.
 
         Args:
@@ -52,22 +53,25 @@ class MainSimulation:
             create_images (bool, optional): Option to visualize the changes on spin matrix. Defaults to False.
 
         Returns:
-            list: Final data for simulation.
+            List: Final data for simulation.
         """
 
         # Here we create memory arrays to store the data of interest.
 
-        mean_domain_size_array: list[float] = []
-        domain_number_array: list[float] = []
-        magnetization_array: list[float] = []
-        energy_array: list[float] = []
+        mean_domain_size_array: List[float]   = []
+        domain_number_array: List[float]      = []
+        magnetization_array: List[float]      = []
+        mean_magnetization_array: List[float] = []
+        energy_array: List[float] = []
+        matrices_per_temperature: Dict[float: np.ndarray]={}
 
-        half = steps / 2
+        half: float = steps / 2
+        no_spines: float = dimension*dimension
 
         # Initialize the spin array
-        lattice = LatticeSquare(dimension, dimension, percentage_ones)
-        matrix = lattice.create_matrix()
-        ising_model = IsingModel2D(matrix)
+        lattice: LatticeSquare = LatticeSquare(dimension, dimension, percentage_ones)
+        matrix: np.ndarray = lattice.create_matrix()
+        ising_model: IsingModel2D = IsingModel2D(matrix)
 
         for step in range(steps):
             setattr(
@@ -78,23 +82,26 @@ class MainSimulation:
             if step >= half:
                 if step % epsilon == 0:
                     magnetization_array.append(ising_model.calculate_magnetization())
+                    mean_magnetization_array.append((ising_model.calculate_magnetization())/no_spines)
                     energy_array.append(ising_model.calculate_energy(J, B, mu))
+                    TopologicalVariables.label_ring(
+                        getattr(ising_model, "_matrix")
+                    )
                     domain_number_array.append(
-                        TopologicalVariables.number_of_domains(
-                            getattr(ising_model, "_matrix")
-                        )
+                        TopologicalVariables.number_of_domains()
                     )
                     mean_domain_size_array.append(
-                        TopologicalVariables.mean_domain_size(
-                            getattr(ising_model, "_matrix")
-                        )
+                        TopologicalVariables.mean_domain_size()
                     )
+                    matrices_per_temperature[step] = np.copy(getattr(ising_model, "_matrix"))
 
         return [
             kT,
             B,
             np.mean(energy_array),
             np.mean(magnetization_array),
+            np.mean(mean_magnetization_array),
             np.mean(domain_number_array),
             np.mean(mean_domain_size_array),
+            matrices_per_temperature
         ]
