@@ -30,6 +30,7 @@ class TopologicalVariables:
     _num_labels: float = None
     _max_label: float = None
     _domain_lengths: List[float] = None
+    _mean_domain_size: float = None
 
     @staticmethod
     def label_ring(matrix: np.ndarray) -> List:
@@ -65,9 +66,22 @@ class TopologicalVariables:
         TopologicalVariables._labels = labels
         TopologicalVariables._num_labels = num_labels
         TopologicalVariables._max_label = max_label
+        TopologicalVariables._domain_lengths = scipy.ndimage.histogram(
+            TopologicalVariables._labels, 
+            0, 
+            TopologicalVariables._max_label + 1, 
+            TopologicalVariables._max_label + 1
+        )[1:]
+        mask = TopologicalVariables._domain_lengths != 0
+        non_zero_values = TopologicalVariables._domain_lengths[mask]
 
-        # return [labels, num_labels, max_label]
-
+        if not non_zero_values.any():
+            TopologicalVariables._mean_domain_size = 0
+        # Check if there are non-zero values before calculating the mean
+        if TopologicalVariables._domain_lengths.any():
+            TopologicalVariables._mean_domain_size = np.mean(TopologicalVariables._domain_lengths)
+        else:
+            TopologicalVariables._mean_domain_size = 0
     @staticmethod
     def find_domains(matrix: np.ndarray = None) -> np.ndarray:
         """
@@ -111,17 +125,8 @@ class TopologicalVariables:
         Returns:
             np.ndarray: Number of elements per label in the labels matrix.
         """
-        # matrix_copy = matrix.copy()
-        # labels, _, num_features = TopologicalVariables.label_ring(matrix)
         if TopologicalVariables._labels is None:
             TopologicalVariables.label_ring(matrix)
-
-        labels = TopologicalVariables._labels
-        num_features = TopologicalVariables._max_label
-        TopologicalVariables._domain_lengths = scipy.ndimage.histogram(
-            labels, 0, num_features + 1, num_features + 1
-        )[1:]
-
         return TopologicalVariables._domain_lengths
 
     @staticmethod
@@ -138,19 +143,9 @@ class TopologicalVariables:
             float: Average size of the domains in the matrix.
         """
         # matrix_copy = matrix.copy()
-        if TopologicalVariables._domain_lengths is None:
-            TopologicalVariables._domain_lengths = (
-                TopologicalVariables.length_of_domains(matrix)
-            )
-        mask = TopologicalVariables._domain_lengths != 0
-        non_zero_values = TopologicalVariables._domain_lengths[mask]
-
-        if not non_zero_values.any():
-            return 0
-
-        mean = np.mean(non_zero_values)
-
-        return mean
+        if TopologicalVariables._mean_domain_size is None:
+            TopologicalVariables.label_ring(matrix)
+        return TopologicalVariables._mean_domain_size
 
     @staticmethod
     def get_num_labels() -> int:

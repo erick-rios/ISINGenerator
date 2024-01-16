@@ -1,4 +1,4 @@
-from isingenerator.main_simulation import MainSimulation
+from src.isingenerator.main_simulation import MainSimulation
 
 print(MainSimulation.create_observables(
     10,

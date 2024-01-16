@@ -39,7 +39,7 @@ class WriterCsv:
                     "B",
                     "energy",
                     "magnetization",
-                    "Magnetization_per_site"
+                    "Magnetization_per_site",
                     "domain_number",
                     "mean_domain_size",
                 ]

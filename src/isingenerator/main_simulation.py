@@ -16,8 +16,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA  02110-1301, USA.
 
-import numpy as np
 from typing import List, Dict
+import numpy as np
+
 from src.isingenerator.monte_carlo_simulation import MonteCarloSimulation
 from src.isingenerator.lattice_square import LatticeSquare
 from src.isingenerator.ising_model_2d import IsingModel2D
@@ -79,6 +80,7 @@ class MainSimulation:
                 "_matrix",
                 MonteCarloSimulation.markov_chain_move(lattice, dimension, 1 / kT),
             )
+            
             if step >= half:
                 if step % epsilon == 0:
                     magnetization_array.append(ising_model.calculate_magnetization())
@@ -94,7 +96,6 @@ class MainSimulation:
                         TopologicalVariables.mean_domain_size()
                     )
                     matrices_per_temperature[step] = np.copy(getattr(ising_model, "_matrix"))
-
         return [
             kT,
             B,

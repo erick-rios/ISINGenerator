@@ -5,7 +5,7 @@ import time
 
 
 # Crea una matriz de 1000x1000 con entradas aleatorias de 1 o -1
-matrix = np.random.choice([-1, 1], size=(10, 10))
+matrix = np.random.choice([-1], size=(10, 10))
 start_time = time.time()
 print(matrix)
 print("label matrix",TopologicalVariables.get_labels())

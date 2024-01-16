@@ -17,11 +17,13 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA  02110-1301, USA.
 
+from typing import Any, List, Dict
+import numpy as np
+import os
 
 from src.isingenerator.main_simulation import MainSimulation
 from src.isingenerator.writer_csv import WriterCsv
-from typing import Any, List, Dict
-import numpy as np
+
 
 
 class CreateDataSimulation:
@@ -271,7 +273,9 @@ class CreateDataSimulation:
             matrices_data[k_T] = results[-1]
         # Write data to CSV file
         WriterCsv.write_data(self._file_name, data)
-
+        # Save concatenated matrices to an .npy file
+        file_path = os.path.join("matrices", f"{self._file_name[:-4]}.npy")
+        np.save(file_path, matrices_data)
         # Return the generated file
         return self._file_name
 
