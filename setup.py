@@ -1,9 +1,4 @@
-from setuptools import setup, find_packages, Extension
-from Cython.Build import cythonize
-
-extensions = [
-    Extension("isingenerator.topological_variables_cythonize", ["src/isingenerator/topological_variables_cythonize.pyx"]),
-]
+from setuptools import setup, find_packages
 
 setup(
     name='ISINGenarator',
@@ -11,7 +6,6 @@ setup(
     author='Erick Jesús Ríos González',
     description='Ising Model 2D generator.',
     long_description=open('README.md').read(),
-    ext_modules=cythonize(extensions),
     packages=find_packages(where="src"),
     py_modules=[
         'isingenerator.__about__',
