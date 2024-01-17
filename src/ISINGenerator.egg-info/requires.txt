@@ -1,0 +1,6 @@
+unidecode
+
+[test]
+pytest
+hypothesis
+coverage

@@ -1,0 +1,2 @@
+[console_scripts]
+curp = isingenerator.__main__:main
