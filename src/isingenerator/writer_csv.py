@@ -22,7 +22,7 @@ import csv
 class WriterCsv:
     """A class that contains the code that generates the CSV file with the simulation data for the Ising model."""
     @staticmethod
-    def write_data(file_name: str, data: str, ) -> None:
+    def write_data(file_name: str, data: str, mode: str = "a") -> None:
         """Write simulation data to a CSV file.
 
         Args:
@@ -31,17 +31,6 @@ class WriterCsv:
             encoding (str, optional): The encoding of the CSV file. Defaults to "utf-8".
         """
         # Write data to CSV file
-        with open(file_name, "w", encoding = "utf-8", newline="") as csv_file:
+        with open(file_name, mode = mode, encoding = "utf-8", newline="") as csv_file:
             csv_writer = csv.writer(csv_file)
-            csv_writer.writerow(
-                [
-                    "kT",
-                    "B",
-                    "energy",
-                    "magnetization",
-                    "Magnetization_per_site",
-                    "domain_number",
-                    "mean_domain_size",
-                ]
-            )
-            csv_writer.writerows(data)
+            csv_writer.writerow(data)

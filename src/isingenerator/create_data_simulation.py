@@ -249,15 +249,27 @@ class CreateDataSimulation:
         Returns:
             str: The name of the file created.
         """
-        # Create a list to store data.
-        data: list[float] = []
         # Create an empty list to store dictionaries of matrices
         matrices_data: Dict[float: Dict[float, np.ndarray]] = {}
-
+        COLUMNS_NAMES = [
+                    "kT",
+                    "B",
+                    "energy",
+                    "magnetization",
+                    "Magnetization_per_site",
+                    "domain_number",
+                    "mean_domain_size",
+                ]
+        index = 1
+        
+        # Write columns name in CSV file
+        WriterCsv.write_data(self._file_name, COLUMNS_NAMES)
+        
         # Perform the nested loop
         for k_T in np.arange(
             self._initial_step_kT, self._final_step_kT + self._delta_kT, self._delta_kT
         ):
+            
             results = MainSimulation.create_observables(
                     self._steps,
                     k_T,
@@ -268,14 +280,16 @@ class CreateDataSimulation:
                     self._mu,
                     self._epsilon,
                 )
-            data.append(results[:-1])
+            #data.append(results[:-1])
             # Use np.hstack to horizontally stack matrices
             matrices_data[k_T] = results[-1]
-        # Write data to CSV file
-        WriterCsv.write_data(self._file_name, data)
-        # Save concatenated matrices to an .npy file
-        file_path = os.path.join("matrices", f"{self._file_name[:-4]}.npy")
-        np.save(file_path, matrices_data)
+            # Write data to CSV file
+            WriterCsv.write_data(self._file_name, results[:-1])
+            # Save concatenated matrices to an .npy file
+            file_path = os.path.join("matrices", f"{self._file_name[:-4]}_{index}.npy")
+            np.save(file_path, matrices_data)
+            index+=1
+            
         # Return the generated file
         return self._file_name
 

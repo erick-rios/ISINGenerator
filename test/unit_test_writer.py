@@ -1,10 +1,10 @@
 from src.isingenerator.create_data_simulation import CreateDataSimulation
 
 create_data_simulation = CreateDataSimulation(
-        "/home/soundskydriver/Documents/data_parte_2.csv",
+        "C:\\Users\\danri\\Documents\\data_parte_2_2.csv",
         36000,
         2.0,
-        2.2,
+        2.3,
         0.1,
         5,
         0.8,
