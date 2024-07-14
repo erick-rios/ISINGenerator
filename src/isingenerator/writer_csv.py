@@ -21,6 +21,7 @@ import csv
 
 class WriterCsv:
     """A class that contains the code that generates the CSV file with the simulation data for the Ising model."""
+    
     @staticmethod
     def write_data(file_name: str, data: str, mode: str = "a") -> None:
         """Write simulation data to a CSV file.

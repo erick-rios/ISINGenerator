@@ -97,12 +97,12 @@ class MainSimulation:
                     )
                     matrices_per_temperature[step] = np.copy(getattr(ising_model, "_matrix"))
         return [
-            kT,
-            B,
-            np.mean(energy_array),
-            np.mean(magnetization_array),
-            np.mean(mean_magnetization_array),
-            np.mean(domain_number_array),
-            np.mean(mean_domain_size_array),
+            "{:.5f}".format(kT),
+            "{:.5f}".format(B),
+            "{:.5f}".format(np.mean(energy_array)),
+            "{:.5f}".format(np.mean(magnetization_array)),
+            "{:.5f}".format(np.mean(mean_magnetization_array)),
+            "{:.5f}".format(np.mean(domain_number_array)),
+            "{:.5f}".format(np.mean(mean_domain_size_array)),
             matrices_per_temperature
         ]
