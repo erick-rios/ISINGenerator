@@ -1,0 +1,12 @@
+digraph "classes_ISINGenerator" {
+rankdir=BT
+charset="utf-8"
+"isingenerator.create_data_simulation.CreateDataSimulation" [color="black", fontcolor="black", label="{CreateDataSimulation|\l|generate_csv_data_nonzero_magnetic_field(): str\lgenerate_csv_data_zero_magnetic_field(): str\l}", shape="record", style="solid"];
+"isingenerator.ising_model_2d.IsingModel2D" [color="black", fontcolor="black", label="{IsingModel2D|\l|calculate_energy(J: float, B: float, mu: float): float\lcalculate_magnetization(): float\l}", shape="record", style="solid"];
+"isingenerator.lattice_square.LatticeSquare" [color="black", fontcolor="black", label="{LatticeSquare|\l|create_matrix(): \lrandom_position(): list\l}", shape="record", style="solid"];
+"isingenerator.main_simulation.MainSimulation" [color="black", fontcolor="black", label="{MainSimulation|\l|create_observables(steps: float, kT: int, dimension: int, percentage_ones: float, J: float, B: float, mu: int, epsilon: bool, create_images): List\l}", shape="record", style="solid"];
+"isingenerator.monte_carlo_simulation.MonteCarloSimulation" [color="black", fontcolor="black", label="{MonteCarloSimulation|\l|delta_energy(value_of_site: int, sum_nb): int\lmarkov_chain_move(lattice: int, N: float, beta): \l}", shape="record", style="solid"];
+"isingenerator.neighbors.Neighbors" [color="black", fontcolor="black", label="{Neighbors|\l|sum_neighbors_position(matrix: int, row: int, column: int, N): int\lsum_of_neighbors(matrix): int\l}", shape="record", style="solid"];
+"isingenerator.topological_variables.TopologicalVariables" [color="black", fontcolor="black", label="{TopologicalVariables|\l|find_domains(matrix): \lget_labels(): int\lget_max_label(): int\lget_num_labels(): int\llabel_ring(matrix): List\llength_of_domains(matrix): \lmean_domain_size(matrix): float\lnumber_of_domains(matrix): int\l}", shape="record", style="solid"];
+"isingenerator.writer_csv.WriterCsv" [color="black", fontcolor="black", label="{WriterCsv|\l|write_data(file_name: str, data: str, mode): \l}", shape="record", style="solid"];
+}

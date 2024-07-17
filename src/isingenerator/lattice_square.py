@@ -71,7 +71,7 @@ class LatticeSquare:
         """
         return f"LatticeSquare\nrows={self._rows}\ncolumns={self._columns}\npercentage_ones={self._percentage_ones}"
 
-    def create_matrix(self) -> np.array:
+    def create_matrix(self) -> np.ndarray:
         """Create the spin matrix for the 2D Ising model with a given distribution of positive spins.
 
         Args:

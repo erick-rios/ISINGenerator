@@ -23,6 +23,7 @@ import numpy as np
 import scipy.ndimage
 
 
+
 class TopologicalVariables:
     """Class for calculating topological variables in a spin matrix."""
 

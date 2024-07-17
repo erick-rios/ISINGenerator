@@ -243,14 +243,15 @@ class CreateDataSimulation:
         # Return the generated file
         return self._file_name
 
+    
     def generate_csv_data_zero_magnetic_field(self) -> str:
-        """Generates a csv archive with the data of the simulation. This is for a zero external magnetic field.
+        """Generates a CSV archive with the data of the simulation. This is for a zero external magnetic field.
 
         Returns:
             str: The name of the file created.
         """
-        # Create an empty list to store dictionaries of matrices
-        matrices_data: Dict[float: Dict[float, np.ndarray]] = {}
+        # Create an empty dictionary to store matrices
+        matrices_data: Dict[float, np.ndarray] = {}
         COLUMNS_NAMES = [
                     "kT",
                     "B",
@@ -262,7 +263,7 @@ class CreateDataSimulation:
                 ]
         index = 1
         
-        # Write columns name in CSV file
+        # Write column names in CSV file
         WriterCsv.write_data(self._file_name, COLUMNS_NAMES)
         
         # Perform the nested loop
@@ -280,15 +281,14 @@ class CreateDataSimulation:
                     self._mu,
                     self._epsilon,
                 )
-            #data.append(results[:-1])
-            # Use np.hstack to horizontally stack matrices
-            matrices_data[k_T] = results[-1]
+            # Store the current matrix in the dictionary
+            #matrices_data[k_T] = results[-1]
             # Write data to CSV file
             WriterCsv.write_data(self._file_name, results[:-1])
-            # Save concatenated matrices to an .npy file
-            file_path = os.path.join("matrices", f"{self._file_name[:-4]}_{index}.npy")
-            np.save(file_path, matrices_data)
-            index+=1
+            # Save the current matrix to an .npy file
+            file_path = os.path.join("matrices", f"{self._file_name[:-4]}_{k_T}_{self._B}.npy")
+            np.save(file_path, results[-1])
+            index += 1
             
         # Return the generated file
         return self._file_name

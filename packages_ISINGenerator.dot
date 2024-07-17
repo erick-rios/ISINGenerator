@@ -1,0 +1,15 @@
+digraph "packages_ISINGenerator" {
+rankdir=BT
+charset="utf-8"
+"isingenerator" [color="black", label="isingenerator", shape="box", style="solid"];
+"isingenerator.__about__" [color="black", label="isingenerator.__about__", shape="box", style="solid"];
+"isingenerator.__main__" [color="black", label="isingenerator.__main__", shape="box", style="solid"];
+"isingenerator.create_data_simulation" [color="black", label="isingenerator.create_data_simulation", shape="box", style="solid"];
+"isingenerator.ising_model_2d" [color="black", label="isingenerator.ising_model_2d", shape="box", style="solid"];
+"isingenerator.lattice_square" [color="black", label="isingenerator.lattice_square", shape="box", style="solid"];
+"isingenerator.main_simulation" [color="black", label="isingenerator.main_simulation", shape="box", style="solid"];
+"isingenerator.monte_carlo_simulation" [color="black", label="isingenerator.monte_carlo_simulation", shape="box", style="solid"];
+"isingenerator.neighbors" [color="black", label="isingenerator.neighbors", shape="box", style="solid"];
+"isingenerator.topological_variables" [color="black", label="isingenerator.topological_variables", shape="box", style="solid"];
+"isingenerator.writer_csv" [color="black", label="isingenerator.writer_csv", shape="box", style="solid"];
+}

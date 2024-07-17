@@ -31,6 +31,7 @@ src/isingenerator/neighbors.py
 src/isingenerator/topological_variables.py
 src/isingenerator/writer_csv.py
 test/__init__.py
+test/data.py
 test/unit_test.py
 test/unit_test_ising_model.py
 test/unit_test_lattice.py
