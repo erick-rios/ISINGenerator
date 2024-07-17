@@ -286,7 +286,7 @@ class CreateDataSimulation:
             # Write data to CSV file
             WriterCsv.write_data(self._file_name, results[:-1])
             # Save the current matrix to an .npy file
-            file_path = os.path.join("matrices", f"{self._file_name[:-4]}_{k_T}_{self._B}.npy")
+            file_path = os.path.join("matrices", f"{self._file_name[:-4]}_{k_T:.5f}_{self._B}.npy")
             np.save(file_path, results[-1])
             index += 1
             
