@@ -289,7 +289,6 @@ class CreateDataSimulation:
             file_path = os.path.join("matrices", f"{self._file_name[:-4]}_{k_T:.5f}_{self._B}.npy")
             np.save(file_path, results[-1])
             index += 1
-            
         # Return the generated file
         return self._file_name
 

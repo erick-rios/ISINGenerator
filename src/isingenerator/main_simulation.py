@@ -58,15 +58,15 @@ class MainSimulation:
         """
 
         # Here we create memory arrays to store the data of interest.
-
-        mean_domain_size_array: List[float]   = []
-        domain_number_array: List[float]      = []
-        magnetization_array: List[float]      = []
-        mean_magnetization_array: List[float] = []
-        energy_array: List[float] = []
+        mean_domain_size_array: float = 0
+        domain_number_array: float = 0
+        magnetization_array: float = 0
+        mean_magnetization_array: float = 0
+        energy_array: float = 0
         matrices_per_temperature: Dict[float: np.ndarray]={}
 
         half: float = steps / 2
+        number_data: int = half/epsilon
         no_spines: float = dimension*dimension
 
         # Initialize the spin array
@@ -83,26 +83,24 @@ class MainSimulation:
             
             if step >= half:
                 if step % epsilon == 0:
-                    magnetization_array.append(ising_model.calculate_magnetization())
-                    mean_magnetization_array.append((ising_model.calculate_magnetization())/no_spines)
-                    energy_array.append(ising_model.calculate_energy(J, B, mu))
+                    
+                    magnetization_array+=ising_model.calculate_magnetization()
+                    mean_magnetization_array+=(ising_model.calculate_magnetization())/no_spines
+                    energy_array+=ising_model.calculate_energy(J, B, mu)
+                    # Compute Topological Variables
                     TopologicalVariables.label_ring(
                         getattr(ising_model, "_matrix")
                     )
-                    domain_number_array.append(
-                        TopologicalVariables.number_of_domains()
-                    )
-                    mean_domain_size_array.append(
-                        TopologicalVariables.mean_domain_size()
-                    )
+                    domain_number_array+=TopologicalVariables.number_of_domains()
+                    mean_domain_size_array+=TopologicalVariables.mean_domain_size()
                     matrices_per_temperature[step] = np.copy(getattr(ising_model, "_matrix"))
         return [
             "{:.5f}".format(kT),
             "{:.5f}".format(B),
-            "{:.5f}".format(np.mean(energy_array)),
-            "{:.5f}".format(np.mean(magnetization_array)),
-            "{:.5f}".format(np.mean(mean_magnetization_array)),
-            "{:.5f}".format(np.mean(domain_number_array)),
-            "{:.5f}".format(np.mean(mean_domain_size_array)),
+            "{:.5f}".format(energy_array/number_data),
+            "{:.5f}".format(magnetization_array/number_data),
+            "{:.5f}".format(mean_magnetization_array/number_data),
+            "{:.5f}".format(domain_number_array/number_data),
+            "{:.5f}".format(mean_domain_size_array/number_data),
             matrices_per_temperature
         ]
