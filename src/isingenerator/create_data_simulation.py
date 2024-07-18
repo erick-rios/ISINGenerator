@@ -250,8 +250,7 @@ class CreateDataSimulation:
         Returns:
             str: The name of the file created.
         """
-        # Create an empty dictionary to store matrices
-        matrices_data: Dict[float, np.ndarray] = {}
+        
         COLUMNS_NAMES = [
                     "kT",
                     "B",
