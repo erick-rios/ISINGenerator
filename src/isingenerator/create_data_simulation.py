@@ -41,9 +41,11 @@ class CreateDataSimulation:
         J: float = 1.0,
         mu: float = 1.0,
         epsilon: int = 15,
+        geometric_variables = False,
         initial_step_B: float = None,
         final_step_B: float = None,
         delta_B: float = None,
+        
     ) -> None:
         """Initialize an instance of CreateDataSimulation.
 
@@ -57,6 +59,7 @@ class CreateDataSimulation:
             percentage_ones (float):
             J (float, optional): The constant of interaction between spins. Defaults to 1.0.
             mu (float, optional): The constant of magnetic moment. Defaults to 1.0.
+            geometric_variables(boolean, optional): An optional parameter with o default value of False to calculate the Forman Ricci curvature.
             epsilon (int, optional): An optional parameter with a default value of 15.
             initial_step_B (float, optional): The initial magnetic field. Defaults to None.
             final_step_B (float, optional): The final magnetic field. Defaults to None.
@@ -92,7 +95,7 @@ class CreateDataSimulation:
         self._J = J
         self._mu = mu
         self._epsilon = epsilon
-
+        self._geometric_variables = geometric_variables
         if (
             initial_step_B is not None
             and final_step_B is not None
@@ -259,8 +262,8 @@ class CreateDataSimulation:
                     "Magnetization_per_site",
                     "domain_number",
                     "mean_domain_size",
+                    "forman_ricci_curvature"
                 ]
-        index = 1
         
         # Write column names in CSV file
         WriterCsv.write_data(self._file_name, COLUMNS_NAMES)
@@ -279,15 +282,11 @@ class CreateDataSimulation:
                     self._B,
                     self._mu,
                     self._epsilon,
+                    self._geometric_variables
                 )
-            # Store the current matrix in the dictionary
-            #matrices_data[k_T] = results[-1]
             # Write data to CSV file
-            WriterCsv.write_data(self._file_name, results[:-1])
-            # Save the current matrix to an .npy file
-            file_path = os.path.join("matrices", f"{self._file_name[:-4]}_{k_T:.5f}_{self._B}.npy")
-            np.save(file_path, results[-1])
-            index += 1
+            WriterCsv.write_data(self._file_name, results)
+            
         # Return the generated file
         return self._file_name
 

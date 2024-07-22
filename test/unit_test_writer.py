@@ -1,7 +1,7 @@
 from src.isingenerator.create_data_simulation import CreateDataSimulation
 
 create_data_simulation = CreateDataSimulation(
-        "/home/erick/Documents/Simulation_Ising/data/data_prueba_tres.csv",
+        "/home/erick/Documents/Simulation_Ising/data/data_prueba_cinco.csv",
         360000,
         1.0,
         4.0,
@@ -10,7 +10,8 @@ create_data_simulation = CreateDataSimulation(
         0.8,
         1.0,
         1.0,
-        15
+        15,
+        True
     )
 
 #create_data_simulation_non_zero = CreateDataSimulation(

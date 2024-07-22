@@ -23,6 +23,7 @@ from src.isingenerator.monte_carlo_simulation import MonteCarloSimulation
 from src.isingenerator.lattice_square import LatticeSquare
 from src.isingenerator.ising_model_2d import IsingModel2D
 from src.isingenerator.topological_variables import TopologicalVariables
+from src.isingenerator.geometric_variables import GeometricVariables
 
 
 class MainSimulation:
@@ -38,7 +39,7 @@ class MainSimulation:
         B: float = 0,
         mu: float = 1,
         epsilon: int = 15,
-        create_images: bool = False,
+        geometric_variables: bool = False,
     ) -> List:
         """Runs the simulation of the 2D Ising Model.
 
@@ -51,7 +52,7 @@ class MainSimulation:
             B (float, optional): External Magnetic Field. Defaults to 0.
             mu (float, optional): Magnetic moment. Defaults to 1.
             epsilon (int, optional): Amount designated to smooth the obtained quantities.. Defaults to 15.
-            create_images (bool, optional): Option to visualize the changes on spin matrix. Defaults to False.
+            geometric variables (bool, optional): Option to calculate the geometric variables of the last spin matrix.
 
         Returns:
             List: Final data for simulation.
@@ -63,7 +64,6 @@ class MainSimulation:
         magnetization_array: float = 0
         mean_magnetization_array: float = 0
         energy_array: float = 0
-        matrices_per_temperature: Dict[float: np.ndarray]={}
 
         half: float = steps / 2
         number_data: int = half/epsilon
@@ -93,14 +93,35 @@ class MainSimulation:
                     )
                     domain_number_array+=TopologicalVariables.number_of_domains()
                     mean_domain_size_array+=TopologicalVariables.mean_domain_size()
-                    matrices_per_temperature[step] = np.copy(getattr(ising_model, "_matrix"))
-        return [
-            "{:.5f}".format(kT),
-            "{:.5f}".format(B),
-            "{:.5f}".format(energy_array/number_data),
-            "{:.5f}".format(magnetization_array/number_data),
-            "{:.5f}".format(mean_magnetization_array/number_data),
-            "{:.5f}".format(domain_number_array/number_data),
-            "{:.5f}".format(mean_domain_size_array/number_data),
-            matrices_per_temperature
-        ]
+            
+        
+        if geometric_variables:
+            graph = GeometricVariables.ising_matrix_to_graph(
+                getattr(ising_model, "_matrix")
+            )
+            frc = GeometricVariables.forman_ricci_curvature_edge(
+                graph, f"forman_ricci_information_{kT:.5f}.csv"
+            )
+            
+        if geometric_variables:
+            return [
+                "{:.5f}".format(kT),
+                "{:.5f}".format(B),
+                "{:.5f}".format(energy_array/number_data),
+                "{:.5f}".format(magnetization_array/number_data),
+                "{:.5f}".format(mean_magnetization_array/number_data),
+                "{:.5f}".format(domain_number_array/number_data),
+                "{:.5f}".format(mean_domain_size_array/number_data),
+                "{:.5f}".format(frc)
+            ]
+        else:
+            return [
+                "{:.5f}".format(kT),
+                "{:.5f}".format(B),
+                "{:.5f}".format(energy_array/number_data),
+                "{:.5f}".format(magnetization_array/number_data),
+                "{:.5f}".format(mean_magnetization_array/number_data),
+                "{:.5f}".format(domain_number_array/number_data),
+                "{:.5f}".format(mean_domain_size_array/number_data)
+            ]
+            

@@ -19,11 +19,13 @@ setup(
         'isingenerator.neighbors',
         'isingenerator.topological_variables',
         'isingenerator.writer_csv',
+        'isingenerator.geometric_variables',
     ],
     package_dir={"": "src"},
     install_requires=[
         'numpy>=1.16.5,<1.23.0',
         'scipy',
+        'networkx',
     ],
     classifiers=[
         'Programming Language :: Python :: 3',
