@@ -23,8 +23,8 @@ from src.isingenerator.monte_carlo_simulation import MonteCarloSimulation
 from src.isingenerator.lattice_square import LatticeSquare
 from src.isingenerator.ising_model_2d import IsingModel2D
 from src.isingenerator.topological_variables import TopologicalVariables
-from src.isingenerator.geometric_variables import GeometricVariables
-
+#from src.isingenerator.geometric_variables import GeometricVariables
+from src.isingenerator.geometric_variables_dos import GeometricVariables
 
 class MainSimulation:
     """Static class for implementing the main simulation of 2D Ising Model"""
@@ -100,7 +100,8 @@ class MainSimulation:
                 getattr(ising_model, "_matrix")
             )
             frc = GeometricVariables.forman_ricci_curvature_edge(
-                graph, f"forman_ricci_information_{kT:.5f}.csv"
+                graph, 
+                f"forman_ricci_information_dos_{kT:.5f}.png"
             )
             
         if geometric_variables:

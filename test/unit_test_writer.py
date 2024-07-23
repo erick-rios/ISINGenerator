@@ -1,11 +1,11 @@
 from src.isingenerator.create_data_simulation import CreateDataSimulation
 
 create_data_simulation = CreateDataSimulation(
-        "/home/erick/Documents/Simulation_Ising/data/data_prueba_cinco.csv",
+        "/home/erick/Documents/Simulation_Ising/data/data_prueba_OCHO.csv",
         360000,
-        1.0,
-        4.0,
-        0.1,
+        2.0,
+        3.0,
+        0.5,
         20,
         0.8,
         1.0,

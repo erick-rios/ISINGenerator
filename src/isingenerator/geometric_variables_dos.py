@@ -1,11 +1,13 @@
-import csv
-
 import networkx as nx
 import numpy as np
-
+import matplotlib.pyplot as plt
+import seaborn as sns
 from typing import Tuple
+from collections import Counter
 
 class GeometricVariables:
+    """Static class for geometric variables in 2D Ising Model"""
+
     @staticmethod
     def ising_matrix_to_graph(ising_matrix: np.ndarray) -> nx.Graph:
         """
@@ -47,23 +49,27 @@ class GeometricVariables:
                             G.add_edge((i, j), neighbor)
 
         return G
-    
+
     @staticmethod
-    def forman_ricci_curvature_edge(graph: nx.Graph, output_file: str) -> float:
+    def forman_ricci_curvature_edge(graph: nx.Graph, name_image: str) -> float:
         """
         Computes the Forman-Ricci curvature for each edge in the given graph, calculates the total Forman-Ricci curvature of the graph,
-        and saves the results in a CSV file.
+        and saves the results in a PNG image showing the normalized distribution of curvature values.
 
         The Forman-Ricci curvature for an edge is calculated based on the degrees of the nodes connected by the edge.
 
         Args:
             graph (nx.Graph): An undirected graph.
-            output_file (str): The path to the output CSV file.
+            name_image (str): The name of the output PNG image file.
 
         Returns:
             float: The total Forman-Ricci curvature of the graph.
         """
+        
+        KT_VALUE = name_image.split('_')[-1].split('.png')[0]
+        
         frc_total = 0
+        frc_values = []
 
         # Compute Forman-Ricci curvature for each edge
         for node in graph.nodes:
@@ -71,17 +77,27 @@ class GeometricVariables:
             for neighbor in neighbors:
                 frc = -graph.degree(node) - graph.degree(neighbor)
                 graph[node][neighbor]["forman_ricci_curvature"] = frc
+                frc_values.append(frc)
+                frc_total += frc
 
-        # Open the CSV file for writing
-        with open(output_file, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(['u', 'v', 'forman_ricci_curvature'])  # Write the header
+        # Calculate the normalized distribution of curvature values
+        count_values = Counter(frc_values)
+        total_count = sum(count_values.values())
+        normalized_distribution = {k: v / total_count for k, v in count_values.items()}
 
-            # Write the edges and their Forman-Ricci curvature to the CSV file
-            for u, v, data in graph.edges(data=True):
-                frc_total += data["forman_ricci_curvature"]
-                writer.writerow([u, v, data["forman_ricci_curvature"]])
-        
+        # Plot the distribution of Forman-Ricci curvature values
+        plt.figure(figsize=(10, 6))
+        colors = sns.color_palette("husl", len(normalized_distribution))
+        for idx, (curvature, count) in enumerate(sorted(normalized_distribution.items())):
+            plt.bar(curvature, count, color=colors[idx], label=f'Curvature: {curvature}, Density: {count:.5f}')
+
+        plt.title(f'Normalized Distribution of Forman-Ricci Curvature for $T = {KT_VALUE}$')
+        plt.xlabel('Forman-Ricci Curvature')
+        plt.ylabel('Density')
+        plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.1), fancybox=True, shadow=True, ncol=1)
+        plt.tight_layout()
+        plt.savefig(name_image)
+        plt.close()
+
         return frc_total
-
 
