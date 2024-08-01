@@ -1,31 +1,59 @@
 from src.isingenerator.create_data_simulation import CreateDataSimulation
+from multiprocessing import Pool
+from typing import Tuple, List, Any
 
-create_data_simulation = CreateDataSimulation(
-        "/home/erick/Documents/Simulation_Ising/data/data_prueba_OCHO.csv",
-        360000,
-        2.0,
-        3.0,
-        0.5,
-        20,
-        0.8,
-        1.0,
-        1.0,
-        15,
-        True
+def simulate_data(arguments: Tuple[str, int, float, float, float, int, float, float, float, int, bool]) -> Any:
+    """
+    Simulates data based on the provided arguments and generates a CSV file.
+
+    Args:
+        arguments (Tuple[str, int, float, float, float, int, float, float, float, int, bool]): 
+            A tuple containing the following parameters:
+            - filepath (str): Path to save the generated CSV file.
+            - iterations (int): Number of iterations for the simulation.
+            - initial_step_kT (float): Initial kT value for the simulation.
+            - final_step_kT (float): Final kT value for the simulation.
+            - delta_kT (float): Increment of kT value in each iteration for the simulation.
+            - dimension_matrix (int): Dimension of the matrix.
+            - percentage_ones (float): Fifth parameter for the simulation.
+            - J (float): The constante of the interaction between spins.
+            - mu (float): The constante of magnetic moment for the simulation.
+            - epsilon (int): Epsilon to compute mean for the values in the matrix for the simulation.
+            - geometric_variables (bool,): Boolean geometric_variables for the simulation settings. Only true if dimension_matrix == 1,000,000. Otherwise set to False.
+
+    Returns:
+        Any: The result of the data generation, typically the status or output of the CSV generation.
+    """
+    filepath, iterations, initial_step_kT, final_step_kT, delta_kT, dimension_matrix, percentage_ones, J, mu, epsilon, geometric_variables = arguments
+    create_data_simulation = CreateDataSimulation(
+        filepath,
+        iterations,
+        initial_step_kT,
+        final_step_kT,
+        delta_kT,
+        dimension_matrix,
+        percentage_ones,
+        J,
+        mu,
+        epsilon,
+        geometric_variables
     )
+    return create_data_simulation.generate_csv_data_zero_magnetic_field()
 
-#create_data_simulation_non_zero = CreateDataSimulation(
-#     "/home/soundskydriver/Documents/ISINGenerator/docs/data_nonzero.csv",
-#    3000,
-#    0.5,
-#    2.0,
-#    0.1,
-#    16,
-#    0.75,
-#    initial_step_B= 0.0,
-#    final_step_B=2.5,
-#    delta_B=0.5
-#)
+if __name__ == "__main__":
+    # List of arguments for each process
+    arguments_list: List[Tuple[str, int, float, float, float, int, float, float, float, int, bool]] = [
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 360000, 1.5, 2.0, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 360000, 2.0, 2.5, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_3.csv", 360000, 2.5, 3.0, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_4.csv", 360000, 3.0, 3.5, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
+    ]
+    
+    # Create a Pool of 4 processes
+    with Pool(4) as pool:
+        results = pool.map(simulate_data, arguments_list)
+    
+    # Print results
+    for result in results:
+        print(result)
 
-print(create_data_simulation.generate_csv_data_zero_magnetic_field())
-#print(create_data_simulation_non_zero.generate_csv_data_nonzero_magnetic_field())
