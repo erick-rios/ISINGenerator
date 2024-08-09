@@ -43,41 +43,25 @@ def simulate_data(arguments: Tuple[str, int, float, float, float, int, float, fl
 if __name__ == "__main__":
     # List of arguments for each process
     arguments_list: List[Tuple[str, int, float, float, float, int, float, float, float, int, bool]] = [
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 30000000, 3.0, 3.0, 0.1, 1000, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 30000000, 3.1, 3.1, 0.1, 1000, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_3.csv", 30000000, 3.2, 3.2, 0.1, 1000, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_4.csv", 30000000, 3.3, 3.3, 0.1, 1000, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 30000000, 3.4, 3.4, 0.1, 1000, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 30000000, 3.5, 3.5, 0.1, 1000, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_3.csv", 30000000, 3.6, 3.6, 0.1, 1000, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_4.csv", 30000000, 3.7, 3.7, 0.1, 1000, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 30000000, 3.8, 3.9, 0.1, 1000, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 30000000, 4.0, 4.0, 0.1, 1000, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_3.csv", 360000, 2.5, 3.0, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_4.csv", 360000, 3.0, 3.5, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 360000, 1.5, 2.0, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 360000, 2.0, 2.5, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_3.csv", 360000, 2.5, 3.0, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_4.csv", 360000, 3.0, 3.5, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 360000, 1.5, 2.0, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 360000, 2.0, 2.5, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_3.csv", 360000, 2.5, 3.0, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_4.csv", 360000, 3.0, 3.5, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 360000, 1.5, 2.0, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 360000, 2.0, 2.5, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_3.csv", 360000, 2.5, 3.0, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_4.csv", 360000, 3.0, 3.5, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 360000, 1.5, 2.0, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 360000, 2.0, 2.5, 0.1, 15, 0.8, 1.0, 1.0, 15, True),
-
-        
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 30000000, 3.0, 3.0, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 30000000, 3.1, 3.1, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_3.csv", 30000000, 3.2, 3.2, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_4.csv", 30000000, 3.3, 3.3, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 30000000, 3.4, 3.4, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 30000000, 3.5, 3.5, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_3.csv", 30000000, 3.6, 3.6, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_4.csv", 30000000, 3.7, 3.7, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 30000000, 3.8, 3.8, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 30000000, 3.9, 3.9, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 30000000, 4.0, 4.0, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 30000000, 3.8, 3.8, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 400000, 1.0, 4.0, 0.1, 100, 0.8, 1.0, 1.0, 15, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 400000, 1.0, 4.0, 0.1, 300, 0.8, 1.0, 1.0, 15, False),
     ]
     
     # Create a Pool of 4 processes
-    with Pool(30) as pool:
-        results = pool.map(simulate_data, arguments_list)
+    with Pool(33) as pool:
+        pool.map(simulate_data, arguments_list)
     
-    # Print results
-    for result in results:
-        print(result)
+ 
 
