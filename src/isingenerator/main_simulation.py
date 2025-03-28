@@ -88,11 +88,11 @@ class MainSimulation:
                     mean_magnetization_array+=(ising_model.calculate_magnetization())/no_spines
                     energy_array+=ising_model.calculate_energy(J, B, mu)
                     # Compute Topological Variables
-                    TopologicalVariables.label_ring(
-                        getattr(ising_model, "_matrix")
-                    )
-                    domain_number_array+=TopologicalVariables.number_of_domains()
-                    mean_domain_size_array+=TopologicalVariables.mean_domain_size()
+                    #TopologicalVariables.label_ring(
+                    #    getattr(ising_model, "_matrix")
+                    #)
+                    #domain_number_array+=TopologicalVariables.number_of_domains()
+                    #mean_domain_size_array+=TopologicalVariables.mean_domain_size()
             
         
         if geometric_variables:

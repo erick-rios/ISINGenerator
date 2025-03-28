@@ -1,6 +1,10 @@
-from src.isingenerator.create_data_simulation import CreateDataSimulation
+"""
+Module for simulating data and generating CSV files using multiprocessing.
+"""
+
 from multiprocessing import Pool
 from typing import Tuple, List, Any
+from src.isingenerator.create_data_simulation import CreateDataSimulation
 
 def simulate_data(arguments: Tuple[str, int, float, float, float, int, float, float, float, int, bool]) -> Any:
     """
@@ -43,24 +47,18 @@ def simulate_data(arguments: Tuple[str, int, float, float, float, int, float, fl
 if __name__ == "__main__":
     # List of arguments for each process
     arguments_list: List[Tuple[str, int, float, float, float, int, float, float, float, int, bool]] = [
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 30000000, 3.0, 3.0, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 30000000, 3.1, 3.1, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_3.csv", 30000000, 3.2, 3.2, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_4.csv", 30000000, 3.3, 3.3, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 30000000, 3.4, 3.4, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 30000000, 3.5, 3.5, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_3.csv", 30000000, 3.6, 3.6, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_4.csv", 30000000, 3.7, 3.7, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 30000000, 3.8, 3.8, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 30000000, 3.9, 3.9, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 30000000, 4.0, 4.0, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 30000000, 3.8, 3.8, 0.0, 900, 0.8, 1.0, 1.0, 15, False),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_1.csv", 400000, 1.0, 4.0, 0.1, 100, 0.8, 1.0, 1.0, 15, False),
-        ("/home/soundskydriver/Documents/ISINGenerator/data_prueba_2.csv", 400000, 1.0, 4.0, 0.1, 300, 0.8, 1.0, 1.0, 15, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/1000000_100_7500.csv", 1000000, 0.5, 5.0, 0.1, 100, 0.5, 1.0, 1.0, 7500, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/1000000_100_10000.csv", 1000000, 0.5, 5.0, 0.1, 100, 0.5, 1.0, 1.0, 10000, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/1100000_110_9075.csv", 1000000, 0.5, 5.0, 0.1, 110, 0.5, 1.0, 1.0, 9075, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/1100000_110_12100.csv", 1000000, 0.5, 5.0, 0.1, 110, 0.5, 1.0, 1.0, 12100, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/1200000_120_10800.csv", 1200000, 0.5, 5.0, 0.1, 120, 0.5, 1.0, 1.0, 10800, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/1200000_120_14400.csv", 1200000, 0.5, 5.0, 0.1, 120, 0.5, 1.0, 1.0, 14400, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/1300000_130_12675.csv", 1300000, 0.5, 5.0, 0.1, 130, 0.5, 1.0, 1.0, 12675, False),
+        ("/home/soundskydriver/Documents/ISINGenerator/1300000_130_16900.csv", 1300000, 0.5, 5.0, 0.1, 130, 0.5, 1.0, 1.0, 16900, False),
     ]
     
     # Create a Pool of 4 processes
-    with Pool(33) as pool:
+    with Pool(8) as pool:
         pool.map(simulate_data, arguments_list)
     
  
